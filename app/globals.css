@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Palette de marque ── */
+  --color-violet-brand: #6655a0;
+  --color-violet-light: #8470c4;
+  --color-violet-dark: #4a3d7a;
+  --color-violet-pale: #f0eeff;
+
+  --color-teal-brand: #45c4bb;
+  --color-teal-light: #6fd8d1;
+  --color-teal-dark: #2fa39b;
+  --color-teal-pale: #e6faf9;
+
+  --color-ink: #14142b;
+  --color-ink-soft: #2b2b4a;
+  --color-mute: #6b6b8a;
+  --color-cloud: #f7f6ff;
+  --color-fog: #eef0ff;
+  --color-line: rgba(102, 85, 160, 0.14);
+
+  /* ── Typographie ── */
+  --font-display: var(--font-orbitron), ui-monospace, monospace;
+  --font-sans: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Animations ── */
+  --animate-float: float 9s ease-in-out infinite alternate;
+  --animate-float-slow: float 14s ease-in-out infinite alternate;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-marquee: marquee 32s linear infinite;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-28px) scale(1.06);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.5;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-violet-brand);
+    color: #fff;
+  }
+
+  /* Barre de défilement discrète aux couleurs de la marque */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-cloud);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-violet-light);
+    border-radius: 10px;
+    border: 3px solid var(--color-cloud);
+  }
+}
+
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 78rem;
+  padding-inline: 1rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+}
+
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Révélation au scroll (piloté par IntersectionObserver) */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
