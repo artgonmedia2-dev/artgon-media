@@ -1,89 +1,74 @@
+import Link from "next/link";
+import ReasonsCarousel from "./ReasonsCarousel";
 import SectionHeading from "./SectionHeading";
+import { Icon } from "./icons";
+import { reasons } from "@/lib/content";
 
-const reasons = [
-  {
-    n: "01",
-    title: "Transparence totale",
-    desc: "Notre grille tarifaire complète 2026 est publique. Prix nets, sans frais cachés : ce qui est devisé est exactement ce que vous payez.",
-  },
-  {
-    n: "02",
-    title: "Expertise locale (Nador, Oriental)",
-    desc: "Ancrés à Nador, nous allions la connaissance du marché local aux standards internationaux du web.",
-  },
-  {
-    n: "03",
-    title: "Livraison dans les délais",
-    desc: "98% de nos projets livrés à temps. Chaque forfait affiche son délai estimé dès le devis.",
-  },
-  {
-    n: "04",
-    title: "Support réactif 7j/7",
-    desc: "Réponse en 24h ouvrées (Basic), 4h (Pro), 1h (Entreprise) — par email, WhatsApp ou téléphone.",
-  },
-];
-
+/**
+ * Titre collant à gauche, grille de 6 atouts à droite.
+ * Cartes claires avec icône au trait ; survol en fond violet pâle.
+ */
 export default function Why() {
   return (
-    <section id="pourquoi" className="py-24">
-      <div className="container-x grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
+    <section id="pourquoi" className="scroll-mt-20 py-16 sm:py-24 lg:py-28">
+      <div className="container-x grid gap-14 lg:grid-cols-[0.85fr_1.4fr] lg:gap-16">
         <div>
-          <SectionHeading
-            center={false}
-            eyebrow="Notre différence"
-            title={
-              <>
-                Pourquoi choisir
-                <br />
-                <em className="not-italic text-violet-brand">Artgon MEDIA ?</em>
-              </>
-            }
-          />
-
-          <div className="mt-12 space-y-4">
-            {reasons.map((r) => (
-              <div
-                key={r.n}
-                className="reveal flex gap-5 rounded-2xl border border-line bg-white p-6 transition-all hover:border-teal-brand/40 hover:shadow-[0_16px_40px_rgba(69,196,187,0.12)]"
+          <div className="lg:sticky lg:top-32">
+            <SectionHeading
+              center={false}
+              eyebrow="Pourquoi nous choisir"
+              title={
+                <>
+                  L&apos;agence digitale de{" "}
+                  <em className="accent text-violet-brand">référence</em> à Nador
+                </>
+              }
+              desc="Expertise technique, connaissance du marché local et accompagnement humain : voilà ce qui nous distingue."
+            />
+            <div className="reveal mt-9 flex flex-wrap items-center gap-5">
+              <Link
+                href="/#contact"
+                className="group inline-flex items-center gap-2.5 rounded-lg bg-violet-brand px-7 py-4 text-sm font-bold text-white shadow-[0_12px_30px_rgba(102,85,160,0.3)] transition-colors duration-300 hover:bg-violet-dark"
               >
-                <span className="font-display text-2xl font-black text-violet-pale">
-                  {r.n}
-                </span>
-                <div>
-                  <h3 className="font-display text-[0.95rem] font-bold text-ink">
-                    {r.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-mute">
-                    {r.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
+                Parlons de votre projet
+                <Icon
+                  name="arrow"
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  strokeWidth={2.25}
+                />
+              </Link>
+              <span className="flex items-center gap-3 text-sm text-mute">
+                <span className="font-display text-3xl font-bold text-ink">50+</span>
+                projets livrés
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Bloc orbital */}
-        <div className="reveal relative mx-auto flex aspect-square w-full max-w-md items-center justify-center">
-          <div
-            aria-hidden
-            className="absolute inset-6 rounded-full bg-gradient-to-br from-violet-pale to-teal-pale blur-2xl"
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0 rounded-full border border-violet-brand/20"
-          />
-          <div
-            aria-hidden
-            className="absolute inset-12 rounded-full border-2 border-dashed border-teal-brand/30"
-          />
-          <div className="relative flex h-44 w-44 flex-col items-center justify-center rounded-full bg-white text-center shadow-[0_20px_60px_rgba(102,85,160,0.18)]">
-            <span className="font-display text-4xl font-black text-violet-brand">
-              50+
-            </span>
-            <p className="mt-1 px-8 text-xs font-semibold leading-snug text-mute">
-              projets livrés avec succès
-            </p>
-          </div>
+        {/* Mobile : carrousel (Kokonut UI) ; dès 640px : grille */}
+        <div className="-mx-4 sm:hidden">
+          <ReasonsCarousel />
+        </div>
+
+        <div className="hidden gap-5 sm:grid sm:grid-cols-2">
+          {reasons.map((r) => (
+            <article
+              key={r.title}
+              className="reveal rounded-2xl border border-line bg-white p-5 transition-colors duration-300 hover:border-violet-brand/30 hover:bg-violet-pale/60 sm:p-7"
+            >
+              {/* Mobile : icône et titre sur une ligne ; empilés dès 640px */}
+              <div className="flex items-center gap-4 sm:block">
+                {/* Même style d'icône que l'accordéon des services */}
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-violet-brand ring-1 ring-line sm:h-12 sm:w-12">
+                  <Icon name={r.icon} className="h-5 w-5 sm:h-6 sm:w-6" />
+                </span>
+                <h3 className="font-display text-base font-semibold text-ink sm:mt-5 sm:text-lg">
+                  {r.title}
+                </h3>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-mute sm:mt-2.5 sm:text-[0.95rem]">{r.desc}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>

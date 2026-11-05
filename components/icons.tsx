@@ -22,6 +22,15 @@ export type IconName =
   | "check"
   | "dash"
   | "arrow"
+  | "arrow-up-right"
+  | "wallet"
+  | "calendar"
+  | "table"
+  | "lock"
+  | "wifi-off"
+  | "bell"
+  | "users"
+  | "alert"
   | "info"
   | "star"
   | "factory"
@@ -116,6 +125,49 @@ const paths: Record<IconName, React.ReactNode> = {
     <>
       <path d="M4 12h15" />
       <path d="m13 6 6 6-6 6" />
+    </>
+  ),
+  "arrow-up-right": <path d="M6 18 18 6M8 6h10v10" />,
+  wallet: (
+    <>
+      <path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v3" />
+      <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-3" />
+      <path d="M21 11h-4a2 2 0 0 0 0 4h4Z" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3" y="4.5" width="18" height="17" rx="2" />
+      <path d="M16 2.5v4M8 2.5v4M3 10h18" />
+    </>
+  ),
+  table: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M3 9h18M3 15h18M9 3v18" />
+    </>
+  ),
+  lock: (
+    <>
+      <rect x="4" y="11" width="16" height="10" rx="2" />
+      <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+    </>
+  ),
+  "wifi-off": (
+    <path d="m2 2 20 20M8.5 16.4a5 5 0 0 1 7 0M5 12.9a10 10 0 0 1 5.2-2.8M19 12.9a10 10 0 0 0-2.3-1.6M2 8.8a15 15 0 0 1 4.2-2.6M22 8.8A15 15 0 0 0 11 5M12 20h.01" />
+  ),
+  bell: <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0" />,
+  users: (
+    <>
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+    </>
+  ),
+  alert: (
+    <>
+      <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+      <path d="M12 9v4M12 17h.01" />
     </>
   ),
   info: (

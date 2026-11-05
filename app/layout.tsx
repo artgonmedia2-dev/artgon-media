@@ -1,22 +1,25 @@
 import type { Metadata } from "next";
-import { Orbitron, Syne } from "next/font/google";
+import { Playfair_Display, Poppins } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
+import Toaster from "@/components/Toaster";
 import { SITE_URL, geoMeta, localBusinessLd, websiteLd } from "@/lib/seo";
 import "./globals.css";
 
-const orbitron = Orbitron({
+const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  variable: "--font-orbitron",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
-const syne = Syne({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-syne",
+  weight: ["700"],
+  style: ["italic"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -28,11 +31,11 @@ export const metadata: Metadata = {
     template: "%s | Artgon MEDIA — Nador",
   },
   description:
-    "Agence digitale à Nador (Oriental, Maroc) : création de site web dès 3 500 MAD, applications mobiles Flutter, community management dès 1 500 MAD/mois, SEO local, Google & Meta Ads. Grille tarifaire 2026 publique.",
+    "Artgon MEDIA, agence web & digitale à Nador : création de sites web dès 1 500 MAD, applications mobiles Flutter, référencement SEO, marketing digital & Ads et automatisation IA, pour Nador, le Maroc et la diaspora en Europe.",
   applicationName: "Artgon MEDIA",
   authors: [{ name: "Artgon MEDIA", url: SITE_URL }],
   creator: "Artgon MEDIA",
-  publisher: "ARTGON MEDIA SARL",
+  publisher: "Artgon MEDIA",
   keywords: [
     "agence web Nador",
     "création site web Nador",
@@ -40,9 +43,9 @@ export const metadata: Metadata = {
     "référencement SEO Nador",
     "SEO local Maroc",
     "application mobile Flutter Maroc",
-    "community management Nador",
+    "agence web diaspora marocaine",
     "Google Ads Maroc",
-    "tarifs agence digitale Maroc",
+    "automatisation IA Maroc",
     "création site e-commerce Maroc",
   ],
   category: "Agence de communication digitale",
@@ -54,7 +57,7 @@ export const metadata: Metadata = {
     title:
       "Agence Web & Création de site web à Nador — Artgon MEDIA",
     description:
-      "Sites web, applications mobiles, SEO local, publicité en ligne et IA à Nador et dans tout l'Oriental. Tarifs 2026 publics, prix nets en MAD.",
+      "Sites web, applications mobiles Flutter, SEO, marketing digital et automatisation IA à Nador, au Maroc et pour la diaspora en Europe.",
     url: SITE_URL,
     siteName: "Artgon MEDIA",
     locale: "fr_MA",
@@ -65,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Agence Web & Digital à Nador — Artgon MEDIA",
     description:
-      "Création de site web dès 3 500 MAD, apps mobiles, SEO local et Ads à Nador. Grille tarifaire 2026 publique.",
+      "Création de site web dès 1 500 MAD, applications mobiles, SEO et marketing digital à Nador.",
   },
   robots: {
     index: true,
@@ -79,7 +82,7 @@ export const metadata: Metadata = {
     },
   },
   formatDetection: { telephone: true, address: true, email: true },
-  // Icônes : conventions de fichiers (app/icon.svg + app/apple-icon.tsx).
+  // Icônes : conventions de fichiers (app/icon.png + app/apple-icon.png), tirées du monogramme du logo.
   other: geoMeta,
 };
 
@@ -93,7 +96,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr-MA" className={`${orbitron.variable} ${syne.variable}`}>
+    <html lang="fr-MA" className={`${poppins.variable} ${playfair.variable}`}>
       <body className="overflow-x-hidden">
         <script
           type="application/ld+json"
@@ -105,6 +108,8 @@ export default function RootLayout({
         <Nav />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFloat />
+        <Toaster />
       </body>
     </html>
   );

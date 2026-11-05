@@ -1,92 +1,65 @@
-import { categories, company, options, packs } from "./pricing";
+import { company, forfaits, plans } from "./pricing";
+import { solutions } from "./solutions";
 
 export const SITE_URL = "https://artgonmedia.online";
 
-/**
- * Coordonnées de Nador (centre-ville) — à affiner avec le point exact
- * de l'agence si vous voulez un ciblage carte au mètre près.
- */
+/** Coordonnées de l'agence (580 Bd Al Massira, Nador). */
 export const geo = {
-  latitude: 35.174,
-  longitude: -2.9287,
+  latitude: 35.1681,
+  longitude: -2.9288,
   region: "MA-02", // ISO 3166-2 : Région de l'Oriental
   placename: "Nador",
   country: "Maroc",
 };
 
-/** Zones desservies — utilisé à la fois dans le JSON-LD et dans la page. */
-export const areasServed = {
-  province: [
-    "Nador",
-    "Selouane",
-    "Beni Ansar",
-    "Zeghanghane",
-    "Arekmane",
-    "Ras El Ma",
-  ],
-  oriental: [
-    "Oujda",
-    "Berkane",
-    "Driouch",
-    "Al Hoceïma",
-    "Taourirt",
-    "Guercif",
-    "Saïdia",
-    "Jerada",
-  ],
-  national: ["Casablanca", "Rabat", "Marrakech", "Tanger", "Fès", "Agadir"],
-  diaspora: ["Belgique", "Pays-Bas", "Espagne", "Allemagne", "Suisse", "France"],
-};
+/** Zones desservies — JSON-LD et pied de page. */
+export const areasServed = [
+  "Maroc",
+  "Diaspora France",
+  "Diaspora Belgique",
+  "Diaspora Suisse",
+  "Diaspora Pays-Bas",
+];
 
-/** Questions fréquentes — réponses issues de la grille tarifaire et des CGV 2026. */
-export const faq: { q: string; a: string }[] = [
+export type Faq = { q: string; a: string }[];
+
+/** Questions fréquentes de la page d'accueil. */
+export const faq: Faq = [
   {
-    q: "Combien coûte la création d'un site web à Nador ?",
-    a: "Un site vitrine de 1 à 3 pages démarre à 3 500 MAD et est livré en 5 à 7 jours. Le forfait Vitrine Pro (5 à 8 pages, blog, SEO de base, CMS) est à 6 500 MAD. Une boutique e-commerce démarre à 12 000 MAD, et une application web sur mesure à partir de 35 000 MAD. Le nom de domaine (1 an), le certificat SSL et l'optimisation mobile sont inclus dans tous les forfaits.",
+    q: "Artgon MEDIA est-elle une agence web basée à Nador ?",
+    a: "Oui, Artgon MEDIA est une agence web et digitale basée à Nador, au 580 Bd Al Massira, 2e étage, Appartement 3, 62000 Nador. Nous intervenons à Nador, dans la région Orientale et pour des clients en Europe (Belgique, France, Pays-Bas, Suisse).",
   },
   {
-    q: "Quels sont les délais de réalisation ?",
-    a: "5 à 7 jours pour un site vitrine essentiel, 10 à 15 jours pour un site vitrine Pro, 3 à 4 semaines pour une boutique e-commerce et 5 à 7 semaines pour un e-commerce Pro. Côté mobile : 2 à 3 semaines pour une app vitrine, 4 à 6 semaines pour une app connectée. Les délais démarrent à réception de l'acompte et de l'ensemble des éléments nécessaires (contenu, accès, validations).",
+    q: "Quels services propose Artgon MEDIA à Nador ?",
+    a: "Artgon MEDIA propose la création de sites web (Next.js, PHP, Laravel), le développement d'applications mobiles Flutter (iOS & Android), le référencement SEO local à Nador, le marketing digital (Facebook Ads, Google Ads), l'automatisation IA (chatbots, workflows n8n) et la maintenance de sites web. L'agence édite aussi ses propres logiciels : InfinityHR (paie et congés au Maroc) et un assistant WhatsApp de prise de rendez-vous pour cabinets médicaux.",
   },
   {
-    q: "Combien coûte la gestion des réseaux sociaux au Maroc ?",
-    a: "Nos forfaits community management vont de 1 500 MAD/mois (8 publications, Facebook + Instagram) à 6 500 MAD/mois (24 publications, tous réseaux + TikTok, 6 Reels et une campagne Ads de 500 MAD/mois incluse). Le forfait le plus choisi est Starter à 2 500 MAD/mois.",
+    q: "Comment contacter Artgon MEDIA pour un devis ?",
+    a: "Vous pouvez contacter Artgon MEDIA par WhatsApp au +212 681 169 346 (le moyen le plus rapide), par email à artgonmedia2@gmail.com ou en remplissant notre formulaire de contact sur cette page. Nous répondons sous 2h en heures ouvrables.",
   },
   {
-    q: "Proposez-vous le référencement SEO local à Nador ?",
-    a: "Oui. Le forfait SEO Local coûte 3 500 MAD en prestation unique : optimisation complète de la fiche Google Business Profile, gestion des avis, 10 citations locales et suivi pendant 3 mois. Un audit SEO complet (rapport de 30+ pages avec plan d'action priorisé) est proposé à 2 500 MAD, et les accompagnements mensuels démarrent à 4 500 MAD/mois.",
+    q: "Artgon MEDIA travaille-t-elle avec la diaspora marocaine en Europe ?",
+    a: "Oui, nous avons une expertise spécifique pour la diaspora marocaine en Belgique, France, Pays-Bas et Suisse. Nous créons des sites et applications pour les projets immobiliers, e-commerce et de services destinés à la communauté marocaine d'Europe.",
+  },
+];
+
+/** Questions sur les tarifs (page /tarifs). */
+export const pricingFaq: Faq = [
+  {
+    q: "Les prix indiqués sont-ils TTC ?",
+    a: "Oui, tous les prix affichés sont toutes taxes comprises (TTC) en dirhams marocains (MAD). Aucun frais caché ne s'applique, le devis signé est le prix définitif.",
   },
   {
-    q: "Combien coûte une application mobile iOS et Android ?",
-    a: "Une application vitrine de 3 à 5 écrans coûte 8 000 MAD, une application connectée avec backend, authentification et dashboard admin 18 000 MAD, une application e-commerce complète 28 000 MAD, et une app sur mesure (réservation, géolocalisation, chat, IA) à partir de 45 000 MAD. La publication sur l'App Store et Google Play est incluse, avec 3 mois de maintenance corrective offerts.",
+    q: "Est-il possible de payer en plusieurs fois ?",
+    a: "Oui, nous proposons un paiement en 2 ou 3 fois pour les projets supérieurs à 5 000 MAD. Les modalités sont : 40% à la signature, 40% à la livraison de la maquette et 20% à la mise en ligne.",
   },
   {
-    q: "Comment se déroule le paiement ?",
-    a: "Pour les projets ponctuels : un acompte de 50% à la commande et le solde à la livraison. Pour les forfaits mensuels : prélèvement en début de mois. Les packs peuvent être réglés mensuellement ou annuellement, avec 2 mois offerts en paiement annuel.",
+    q: "L'hébergement est-il inclus dans les tarifs ?",
+    a: "Les forfaits Starter et Pro incluent 1 an d'hébergement offert sur notre infrastructure. À partir de la 2e année, l'hébergement est facturé 600 MAD/an (mutualisé) ou 1 200 MAD/an (VPS). Nous proposons aussi des déploiements Vercel ou sur votre propre hébergeur.",
   },
   {
-    q: "Les tarifs affichés incluent-ils la TVA ?",
-    a: "Non. Tous les tarifs sont exprimés en dirhams marocains (MAD) nets, hors TVA. La TVA s'applique ensuite selon la législation marocaine en vigueur.",
-  },
-  {
-    q: "Y a-t-il un engagement de durée ?",
-    a: "Les forfaits mensuels (community management, SEO, Ads) sont sans engagement de longue durée, avec 30 jours de préavis pour résilier. Les contrats de maintenance sont conclus sur 12 mois avec paiement trimestriel et 60 jours de préavis. Pour le SEO, un engagement minimum de 3 mois est recommandé pour obtenir des résultats significatifs.",
-  },
-  {
-    q: "Le code source du site est-il livré ?",
-    a: "Les fichiers source sont livrés sur les forfaits de création de sites web. Les codes sources applicatifs complets sont livrés sur les forfaits « Sur Mesure » ou moyennant un supplément. Le transfert des droits d'usage intervient à la finalisation du paiement intégral.",
-  },
-  {
-    q: "Existe-t-il une garantie après la livraison ?",
-    a: "Oui, une garantie corrective de 3 mois couvre les bugs post-livraison sur les projets web et mobile (hors modifications fonctionnelles). Les chatbots incluent 1 mois de maintenance corrective et 1 heure de formation utilisateur offerte.",
-  },
-  {
-    q: "Intervenez-vous en dehors de Nador ?",
-    a: "Oui. Nous accompagnons les entreprises de toute la région de l'Oriental (Oujda, Berkane, Driouch, Al Hoceïma, Taourirt, Guercif), du reste du Maroc, ainsi que les entrepreneurs de la diaspora marocaine en Europe. Les projets sont pilotés à distance avec un interlocuteur dédié par email, WhatsApp et téléphone.",
-  },
-  {
-    q: "Quel est le délai de réponse du support ?",
-    a: "Le support est assuré par email, WhatsApp et téléphone. Les temps de réponse garantis sont de 24 heures ouvrées sur le forfait Basic, 4 heures sur le forfait Pro et 1 heure sur le forfait Entreprise, avec un uptime garanti de 99,9%.",
+    q: "Que se passe-t-il si je dépasse le scope défini dans le devis ?",
+    a: "Toute modification hors scope est chiffrée et soumise à votre accord avant réalisation. Notre facturation est transparente : jamais de surprise.",
   },
 ];
 
@@ -96,7 +69,7 @@ export const faq: { q: string; a: string }[] = [
 
 const postalAddress = {
   "@type": "PostalAddress",
-  streetAddress: "580, Boulevard Al Massira, 2ème étage, App. n°3",
+  streetAddress: company.street,
   addressLocality: "Nador",
   addressRegion: "Oriental",
   postalCode: "62000",
@@ -108,64 +81,74 @@ export const localBusinessLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": `${SITE_URL}/#organization`,
-  name: "Artgon MEDIA",
-  legalName: company.name,
-  alternateName: "ARTGON MEDIA SARL",
+  name: company.name,
+  legalName: company.legalName,
   url: SITE_URL,
   logo: `${SITE_URL}/logo-artgon.png`,
   image: `${SITE_URL}/logo-artgon.png`,
   telephone: `+${company.phoneRaw}`,
   email: company.email,
-  priceRange: "3 500 – 45 000 MAD",
-  currenciesAccepted: "MAD",
-  paymentAccepted: "Virement bancaire, espèces, chèque",
+  priceRange: "$$",
+  currenciesAccepted: "MAD, EUR",
+  paymentAccepted: "Virement bancaire, Espèces, PayPal",
   address: postalAddress,
   geo: {
     "@type": "GeoCoordinates",
     latitude: geo.latitude,
     longitude: geo.longitude,
   },
-  areaServed: [
-    ...areasServed.province,
-    ...areasServed.oriental,
-    "Région de l'Oriental",
-    "Maroc",
-  ].map((name) => ({ "@type": "Place", name })),
-  serviceArea: {
-    "@type": "GeoCircle",
-    geoMidpoint: {
-      "@type": "GeoCoordinates",
-      latitude: geo.latitude,
-      longitude: geo.longitude,
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
     },
-    geoRadius: "250000",
-  },
-  knowsLanguage: ["fr", "ar", "es", "en"],
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "13:00",
+    },
+  ],
+  sameAs: [company.linkedin, company.youtube],
+  areaServed: [
+    { "@type": "City", name: "Nador" },
+    { "@type": "AdministrativeArea", name: "Oriental" },
+    ...["Maroc", "France", "Belgique", "Suisse", "Pays-Bas"].map((name) => ({
+      "@type": "Country",
+      name,
+    })),
+  ],
   identifier: [
     { "@type": "PropertyValue", name: "RC", value: company.rc },
     { "@type": "PropertyValue", name: "ICE", value: company.ice },
   ],
   description:
-    "Agence digitale et web à Nador (région de l'Oriental, Maroc) : création de sites web et e-commerce, applications mobiles Flutter, community management, référencement SEO, campagnes Meta et Google Ads, automatisation et intelligence artificielle. Grille tarifaire 2026 publique.",
+    "Artgon MEDIA est une agence web et digitale à Nador, Maroc, spécialisée en création de sites web, applications mobiles Flutter, SEO, marketing digital et automatisation IA. Elle édite aussi InfinityHR (paie et congés au Maroc) et un assistant WhatsApp de prise de rendez-vous pour cabinets médicaux.",
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Grille tarifaire Artgon MEDIA 2026",
-    itemListElement: categories.map((cat) => ({
-      "@type": "OfferCatalog",
-      name: cat.title,
-      itemListElement: cat.rows.map((row) => ({
+    name: "Services Artgon MEDIA",
+    itemListElement: [
+      ...forfaits.map((f) => ({
         "@type": "Offer",
-        name: `${cat.title} — ${row.name}`,
-        description: row.desc,
-        priceCurrency: "MAD",
-        ...(row.price === "Sur devis"
-          ? {}
-          : { price: row.price.replace(/[^\d]/g, "") }),
-        availability: "https://schema.org/InStock",
-        areaServed: "MA",
-        seller: { "@id": `${SITE_URL}/#organization` },
+        itemOffered: { "@type": "Service", name: f.title },
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          priceCurrency: "MAD",
+          minPrice: f.from.replace(/[^\d]/g, ""),
+        },
       })),
-    })),
+      ...solutions.map((sw) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "SoftwareApplication",
+          name: sw.name,
+          url: `${SITE_URL}/solutions/${sw.slug}`,
+          applicationCategory: sw.category,
+        },
+      })),
+    ],
   },
 };
 
@@ -192,59 +175,48 @@ export function breadcrumbLd(items: { name: string; url: string }[]) {
   };
 }
 
-export const faqLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faq.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
+export function faqLd(items: Faq) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
 
-/** Liste de prix complète : lisible par les moteurs et les IA génératives. */
+/** Liste de prix : lisible par les moteurs et les IA génératives. */
 export const priceListLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Tarifs Artgon MEDIA 2026",
+  name: "Tarifs Artgon MEDIA",
   description:
-    "Grille tarifaire complète 2026 : sites web, applications mobiles, community management, SEO, publicité en ligne, IA, maintenance, packs et options. Prix nets en MAD, hors TVA.",
-  numberOfItems:
-    categories.reduce((n, c) => n + c.rows.length, 0) +
-    packs.length +
-    options.length,
+    "Tarifs Artgon MEDIA à Nador : plans site web, forfaits par service et logiciels. Prix en MAD, TVA incluse.",
   itemListElement: [
-    ...categories.flatMap((cat) =>
-      cat.rows.map((row) => ({
-        "@type": "Service",
-        name: `${row.name} — ${cat.title}`,
-        serviceType: cat.title,
-        description: row.desc,
-        provider: { "@id": `${SITE_URL}/#organization` },
-        areaServed: { "@type": "Country", name: "Maroc" },
-        offers: {
-          "@type": "Offer",
-          priceCurrency: "MAD",
-          ...(row.price === "Sur devis"
-            ? {}
-            : { price: row.price.replace(/[^\d]/g, "") }),
-          description: row.priceNote ?? "prix net, hors TVA",
-        },
-      })),
-    ),
-    ...packs.map((pack) => ({
+    ...plans.map((p) => ({
       "@type": "Service",
-      name: pack.name,
-      serviceType: "Pack digital clé en main",
-      description: `${pack.tagline} — ${pack.items.join(", ")}.`,
+      name: `Site web — ${p.name}`,
+      description: p.desc,
       provider: { "@id": `${SITE_URL}/#organization` },
       offers: {
         "@type": "Offer",
         priceCurrency: "MAD",
-        ...(pack.price === "Sur devis"
-          ? {}
-          : { price: pack.price.replace(/[^\d]/g, "") }),
-        description: pack.saving ?? "prix net, hors TVA",
+        price: p.price.replace(/[^\d]/g, ""),
+        description: "Prix unique, TVA incluse",
+      },
+    })),
+    ...forfaits.map((f) => ({
+      "@type": "Service",
+      name: f.title,
+      description: f.points.join(", "),
+      provider: { "@id": `${SITE_URL}/#organization` },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "MAD",
+        price: f.from.replace(/[^\d]/g, ""),
+        description: `À partir de ${f.from}, TVA incluse`,
       },
     })),
   ].map((item, i) => ({

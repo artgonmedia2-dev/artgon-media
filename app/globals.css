@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Le site n'a pas de thème sombre : `dark:` ne s'active qu'avec une classe .dark
+   (jamais posée), et non plus selon le réglage du système. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* ── Palette de marque ── */
   --color-violet-brand: #6655a0;
@@ -19,9 +23,15 @@
   --color-fog: #eef0ff;
   --color-line: rgba(102, 85, 160, 0.14);
 
+  /* Fonds sombres (hero, bandeaux, footer) */
+  --color-night: #0d0c22;
+  --color-night-soft: #18163a;
+  --color-night-line: rgba(255, 255, 255, 0.1);
+
   /* ── Typographie ── */
-  --font-display: var(--font-orbitron), ui-monospace, monospace;
-  --font-sans: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
 
   /* ── Animations ── */
   --animate-float: float 9s ease-in-out infinite alternate;
@@ -67,10 +77,18 @@
   }
 
   body {
-    background: #fff;
+    /* Fond clair commun à toutes les sections (celui de la grille tarifaire) */
+    background: var(--color-cloud);
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* Tailwind 4 remet le curseur par défaut sur les boutons */
+  button:not(:disabled),
+  [role="button"],
+  summary {
+    cursor: pointer;
   }
 
   ::selection {
@@ -89,6 +107,51 @@
     background: var(--color-violet-light);
     border-radius: 10px;
     border: 3px solid var(--color-cloud);
+  }
+}
+
+/* Mot d'accent des titres : serif italique */
+@utility accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Fond sombre de marque : nuit → violet */
+@utility bg-night-gradient {
+  background:
+    radial-gradient(60% 80% at 100% 0%, rgba(102, 85, 160, 0.55), transparent 70%),
+    radial-gradient(50% 60% at 0% 100%, rgba(69, 196, 187, 0.14), transparent 70%),
+    linear-gradient(135deg, #0d0c22 0%, #17153a 55%, #2a2257 100%);
+}
+
+/* Bord supérieur en biais pour enchaîner les sections */
+@utility slant-top {
+  clip-path: polygon(0 3.5rem, 100% 0, 100% 100%, 0 100%);
+  @media (min-width: 1024px) {
+    clip-path: polygon(0 6rem, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Survol des boutons d'action : un aplat blanc balaie le bouton de gauche à droite */
+@utility btn-sweep {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.3s ease-out;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: -1;
+    width: 0;
+    background: #fff;
+    transition: width 0.3s ease-out;
+  }
+  &:hover::before,
+  &:focus-visible::before {
+    width: 100%;
   }
 }
 
@@ -136,5 +199,56 @@
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* ── Carte Leaflet aux couleurs du site ── */
+.leaflet-container {
+  background: var(--color-cloud);
+  font-family: var(--font-sans);
+}
+
+.leaflet-bar {
+  border: 0 !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  line-height: 2.25rem !important;
+  border-bottom-color: var(--color-line) !important;
+  color: var(--color-violet-brand) !important;
+  background: #fff;
+}
+
+.leaflet-bar a:hover {
+  background: var(--color-violet-pale);
+}
+
+/* Onde pulsée sous le marqueur */
+.map-pin-pulse {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 1.75rem;
+  height: 0.75rem;
+  margin-left: -0.875rem;
+  border-radius: 50%;
+  background: rgba(69, 196, 187, 0.55);
+  animation: map-pulse 2s ease-out infinite;
+}
+
+@keyframes map-pulse {
+  from {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2.6);
+    opacity: 0;
   }
 }

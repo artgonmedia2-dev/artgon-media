@@ -28,7 +28,7 @@ export default function Logo({
 
   if (variant === "plate") {
     return (
-      <span className="inline-flex rounded-2xl bg-white px-4 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.18)]">
+      <span className="inline-flex rounded-xl bg-white px-3.5 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.18)]">
         {image}
       </span>
     );

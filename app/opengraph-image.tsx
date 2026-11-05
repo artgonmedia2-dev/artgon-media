@@ -42,7 +42,7 @@ export default async function OpengraphImage() {
             textAlign: "center",
           }}
         >
-          Agence digitale &amp; web — Nador, Oriental
+          Agence web &amp; digitale — Nador, Oriental, Maroc
         </div>
 
         <div
@@ -70,7 +70,7 @@ export default async function OpengraphImage() {
             borderRadius: 999,
           }}
         >
-          Grille tarifaire 2026 publique · dès 3 500 MAD
+          Sites web dès 1 500 MAD · Nador, Maroc & Europe
         </div>
       </div>
     ),
