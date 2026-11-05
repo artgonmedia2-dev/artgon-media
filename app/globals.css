@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Le site n'a pas de thème sombre : `dark:` ne s'active qu'avec une classe .dark
+   (jamais posée), et non plus selon le réglage du système. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* ── Palette de marque ── */
   --color-violet-brand: #6655a0;

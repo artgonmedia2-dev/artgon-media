@@ -16,7 +16,7 @@ export default function Services() {
   const cur = services[active];
 
   return (
-    <section id="services" className="scroll-mt-20 bg-cloud py-24 lg:py-28">
+    <section id="services" className="scroll-mt-20 bg-cloud py-16 sm:py-24 lg:py-28">
       <div className="container-x grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
         <div>
           <SectionHeading
@@ -75,16 +75,10 @@ export default function Services() {
                         </p>
                         <Link
                           href={s.href}
-                          className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-violet-brand hover:text-teal-dark"
+                          className="mt-2 -mb-2 inline-flex items-center gap-2 py-2 text-sm font-bold text-violet-brand hover:text-teal-dark"
                         >
                           À partir de {s.from}
                           <Icon name="arrow" className="h-4 w-4" />
-                        </Link>
-                        <Link
-                          href={s.href}
-                          className="btn-sweep ml-3 mt-4 inline-block rounded-lg bg-teal-brand px-4 py-2 text-xs font-bold text-night lg:hidden"
-                        >
-                          Voir
                         </Link>
                       </div>
                     </div>

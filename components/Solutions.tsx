@@ -11,7 +11,7 @@ export default function Solutions() {
   return (
     <section
       id="solutions"
-      className="bg-night-gradient slant-top relative scroll-mt-20 overflow-hidden pt-36 pb-24 text-white lg:pt-44 lg:pb-28"
+      className="bg-night-gradient slant-top relative scroll-mt-20 overflow-hidden pt-24 pb-16 sm:pt-36 sm:pb-24 text-white lg:pt-44 lg:pb-28"
     >
       <Particles />
       <div className="container-x relative z-10">
@@ -30,7 +30,7 @@ export default function Solutions() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-2">
+        <div className="mt-10 grid gap-6 sm:mt-14 sm:gap-8 lg:grid-cols-2">
           {solutions.map((s) => {
             const Preview = previews[s.preview];
             return (

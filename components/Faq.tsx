@@ -26,11 +26,11 @@ export default function Faq({
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id={id} className={`scroll-mt-20 py-24 lg:py-28 ${className}`}>
+    <section id={id} className={`scroll-mt-20 py-16 sm:py-24 lg:py-28 ${className}`}>
       <div className="container-x">
         <SectionHeading eyebrow={eyebrow} title={title} />
 
-        <div className="mx-auto mt-14 max-w-3xl divide-y divide-line border-y border-line">
+        <div className="mx-auto mt-10 max-w-3xl divide-y divide-line border-y border-line sm:mt-14">
           {items.map((f, i) => {
             const isOpen = open === i;
             return (

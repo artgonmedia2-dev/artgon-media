@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ReasonsCarousel from "./ReasonsCarousel";
 import SectionHeading from "./SectionHeading";
 import { Icon } from "./icons";
 import { reasons } from "@/lib/content";
@@ -9,7 +10,7 @@ import { reasons } from "@/lib/content";
  */
 export default function Why() {
   return (
-    <section id="pourquoi" className="scroll-mt-20 py-24 lg:py-28">
+    <section id="pourquoi" className="scroll-mt-20 py-16 sm:py-24 lg:py-28">
       <div className="container-x grid gap-14 lg:grid-cols-[0.85fr_1.4fr] lg:gap-16">
         <div>
           <div className="lg:sticky lg:top-32">
@@ -44,20 +45,28 @@ export default function Why() {
           </div>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        {/* Mobile : carrousel (Kokonut UI) ; dès 640px : grille */}
+        <div className="-mx-4 sm:hidden">
+          <ReasonsCarousel />
+        </div>
+
+        <div className="hidden gap-5 sm:grid sm:grid-cols-2">
           {reasons.map((r) => (
             <article
               key={r.title}
-              className="reveal rounded-2xl border border-line bg-white p-7 transition-colors duration-300 hover:border-violet-brand/30 hover:bg-violet-pale/60"
+              className="reveal rounded-2xl border border-line bg-white p-5 transition-colors duration-300 hover:border-violet-brand/30 hover:bg-violet-pale/60 sm:p-7"
             >
-              {/* Même style d'icône que l'accordéon des services */}
-              <span className="flex h-12 w-12 items-center justify-center rounded-lg text-violet-brand ring-1 ring-line">
-                <Icon name={r.icon} className="h-6 w-6" />
-              </span>
-              <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                {r.title}
-              </h3>
-              <p className="mt-2.5 text-[0.95rem] leading-relaxed text-mute">{r.desc}</p>
+              {/* Mobile : icône et titre sur une ligne ; empilés dès 640px */}
+              <div className="flex items-center gap-4 sm:block">
+                {/* Même style d'icône que l'accordéon des services */}
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-violet-brand ring-1 ring-line sm:h-12 sm:w-12">
+                  <Icon name={r.icon} className="h-5 w-5 sm:h-6 sm:w-6" />
+                </span>
+                <h3 className="font-display text-base font-semibold text-ink sm:mt-5 sm:text-lg">
+                  {r.title}
+                </h3>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-mute sm:mt-2.5 sm:text-[0.95rem]">{r.desc}</p>
             </article>
           ))}
         </div>

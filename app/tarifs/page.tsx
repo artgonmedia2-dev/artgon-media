@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Faq from "@/components/Faq";
+import ForfaitCard from "@/components/ForfaitCard";
+import ForfaitsCarousel from "@/components/ForfaitsCarousel";
 import Particles from "@/components/Particles";
 import PricingTeaser from "@/components/PricingTeaser";
 import SectionHeading from "@/components/SectionHeading";
@@ -69,7 +71,7 @@ export default function TarifsPage() {
             <nav aria-label="Fil d'Ariane" className="text-sm text-white/50">
               <ol className="flex gap-2">
                 <li>
-                  <Link href="/" className="transition-colors hover:text-teal-light">
+                  <Link href="/" className="-my-2 inline-block py-2 transition-colors hover:text-teal-light">
                     Accueil
                   </Link>
                 </li>
@@ -164,7 +166,7 @@ export default function TarifsPage() {
       <PricingTeaser showAllLink={false} />
 
       {/* Tous les forfaits */}
-      <section id="tous-les-forfaits" className="scroll-mt-20 py-24 lg:py-28">
+      <section id="tous-les-forfaits" className="scroll-mt-20 py-16 sm:py-24 lg:py-28">
         <div className="container-x">
           <SectionHeading
             eyebrow="Tous nos forfaits"
@@ -176,56 +178,14 @@ export default function TarifsPage() {
             desc="Prix de départ en dirhams (MAD). Chaque projet reçoit un devis détaillé et gratuit sous 24 h."
           />
 
-          <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {/* Mobile : carrousel (Kokonut UI) ; dès 640px : grille */}
+          <div className="-mx-4 mt-8 sm:hidden">
+            <ForfaitsCarousel />
+          </div>
+
+          <div className="mt-10 hidden gap-6 sm:mt-16 sm:grid md:grid-cols-2 lg:grid-cols-3">
             {forfaits.map((f) => (
-              <article
-                key={f.id}
-                id={f.id}
-                className="reveal flex scroll-mt-28 flex-col rounded-2xl border border-line bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_rgba(102,85,160,0.12)]"
-              >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-pale text-violet-brand">
-                  <Icon name={f.icon} className="h-6 w-6" />
-                </span>
-                <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                  {f.title}
-                </h3>
-                <p className="mt-2 text-sm text-mute">À partir de</p>
-                <p className="font-display text-2xl font-bold text-violet-brand">
-                  {f.from}
-                </p>
-                <p className="mt-3 flex items-start gap-2 text-sm text-mute">
-                  <Icon name="clock" className="mt-0.5 h-4 w-4 shrink-0 text-teal-dark" />
-                  {f.delay}
-                </p>
-                <ul className="mt-5 flex-1 space-y-2 border-t border-line pt-5">
-                  {f.points.map((pt) => (
-                    <li key={pt} className="flex items-center gap-2.5 text-sm text-ink-soft">
-                      <Icon
-                        name="check"
-                        className="h-4 w-4 shrink-0 text-teal-brand"
-                        strokeWidth={2.25}
-                      />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-7 flex items-center gap-4">
-                  <a
-                    href={forfaitWhatsapp(f)}
-                    target="_blank"
-                    rel="noopener"
-                    className="flex-1 rounded-lg bg-violet-brand py-3 text-center text-sm font-bold text-white transition-colors hover:bg-violet-light"
-                  >
-                    Demander un devis
-                  </a>
-                  <a
-                    href="/#services"
-                    className="text-sm font-bold text-violet-brand hover:text-teal-dark"
-                  >
-                    Détails
-                  </a>
-                </div>
-              </article>
+              <ForfaitCard key={f.id} f={f} anchor className="reveal" />
             ))}
           </div>
 

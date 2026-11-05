@@ -502,7 +502,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="bg-night-gradient slant-top relative scroll-mt-20 overflow-hidden pt-36 pb-24 text-white lg:pt-44 lg:pb-28"
+      className="bg-night-gradient slant-top relative scroll-mt-20 overflow-hidden pt-24 pb-16 sm:pt-36 sm:pb-24 text-white lg:pt-44 lg:pb-28"
     >
       <Particles />
       <div className="container-x relative z-10 grid items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-16">

@@ -6,7 +6,7 @@ import { customQuoteWhatsapp, planWhatsapp, plans } from "@/lib/pricing";
 /** Les 3 plans « site web » — affichés sur l'accueil et sur /tarifs. */
 export default function PricingTeaser({ showAllLink = true }: { showAllLink?: boolean }) {
   return (
-    <section id="tarifs" className="scroll-mt-20 bg-cloud py-24 lg:py-28">
+    <section id="tarifs" className="scroll-mt-20 bg-cloud py-16 sm:py-24 lg:py-28">
       <div className="container-x">
         <SectionHeading
           eyebrow="Nos tarifs"
@@ -18,7 +18,7 @@ export default function PricingTeaser({ showAllLink = true }: { showAllLink?: bo
           desc="Tous les prix sont en dirhams marocains (MAD), TVA incluse. Devis personnalisé gratuit sur demande."
         />
 
-        <div className="mx-auto mt-16 grid max-w-6xl items-start gap-6 lg:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-6xl items-start gap-6 sm:mt-16 lg:grid-cols-3">
           {plans.map((p) => (
             <article
               key={p.name}

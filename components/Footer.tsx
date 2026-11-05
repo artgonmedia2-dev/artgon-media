@@ -15,7 +15,7 @@ const agence = [
 ];
 
 const heading = "font-display text-base font-semibold text-white";
-const list = "mt-5 space-y-3 text-sm text-white/60";
+const list = "mt-4 space-y-2.5 text-[0.8rem] text-white/60 sm:mt-5 sm:space-y-3 sm:text-sm";
 const link = "transition-colors hover:text-teal-light";
 const social =
   "flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-white/80 transition-colors";
@@ -24,9 +24,9 @@ export default function Footer() {
   return (
     <footer className="relative bg-night text-white">
       <div aria-hidden className="h-1 bg-gradient-to-r from-violet-brand via-teal-brand to-violet-brand" />
-      <div className="container-x grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.2fr]">
+      <div className="container-x grid grid-cols-2 gap-x-6 gap-y-10 py-12 sm:gap-12 sm:py-16 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.2fr]">
         {/* Bloc marque centré dans sa colonne */}
-        <div className="flex flex-col items-center text-center">
+        <div className="col-span-2 flex flex-col items-center text-center sm:col-span-1">
           <Link
             href="/"
             aria-label="Artgon MEDIA — retour à l'accueil"
@@ -110,7 +110,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="col-span-2 sm:col-span-1">
           <h3 className={heading}>Contact</h3>
           <ul className={list}>
             <li className="leading-relaxed">

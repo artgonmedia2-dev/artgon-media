@@ -77,13 +77,13 @@ export default async function SolutionPage({ params }: Props) {
             <nav aria-label="Fil d'Ariane" className="text-sm text-white/50">
               <ol className="flex flex-wrap items-center gap-2">
                 <li>
-                  <Link href="/" className="transition-colors hover:text-teal-light">
+                  <Link href="/" className="-my-2 inline-block py-2 transition-colors hover:text-teal-light">
                     Accueil
                   </Link>
                 </li>
                 <li aria-hidden>/</li>
                 <li>
-                  <Link href="/#solutions" className="transition-colors hover:text-teal-light">
+                  <Link href="/#solutions" className="-my-2 inline-block py-2 transition-colors hover:text-teal-light">
                     Solutions
                   </Link>
                 </li>
@@ -137,7 +137,7 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* Présentation + fiche */}
-      <section className="py-20 lg:py-24">
+      <section className="py-14 sm:py-20 lg:py-24">
         <div className="container-x grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
           <div className="reveal">
             <p className="text-lg leading-relaxed text-ink-soft">{s.intro}</p>
@@ -163,7 +163,7 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* Fonctionnalités */}
-      <section id="fonctionnalites" className="scroll-mt-20 pb-24 lg:pb-28">
+      <section id="fonctionnalites" className="scroll-mt-20 pb-16 sm:pb-24 lg:pb-28">
         <div className="container-x">
           <SectionHeading
             eyebrow={s.name}
@@ -173,17 +173,20 @@ export default async function SolutionPage({ params }: Props) {
               </>
             }
           />
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
             {s.features.map((f) => (
               <article
                 key={f.title}
-                className="reveal rounded-2xl border border-line bg-white p-7 transition-colors duration-300 hover:border-violet-brand/30 hover:bg-violet-pale/60"
+                className="reveal rounded-2xl border border-line bg-white p-5 transition-colors duration-300 hover:border-violet-brand/30 hover:bg-violet-pale/60 sm:p-7"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-lg text-violet-brand ring-1 ring-line">
-                  <Icon name={f.icon} className="h-6 w-6" />
-                </span>
-                <h3 className="mt-6 font-display text-lg font-semibold text-ink">{f.title}</h3>
-                <p className="mt-2.5 text-[0.95rem] leading-relaxed text-mute">{f.desc}</p>
+                {/* Mobile : icône et titre sur une ligne ; empilés dès 640px */}
+                <div className="flex items-center gap-4 sm:block">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-violet-brand ring-1 ring-line sm:h-12 sm:w-12">
+                    <Icon name={f.icon} className="h-5 w-5 sm:h-6 sm:w-6" />
+                  </span>
+                  <h3 className="font-display text-base font-semibold text-ink sm:mt-6 sm:text-lg">{f.title}</h3>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-mute sm:mt-2.5 sm:text-[0.95rem]">{f.desc}</p>
               </article>
             ))}
           </div>
@@ -191,7 +194,7 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* Comment démarrer */}
-      <section className="bg-night-gradient slant-top relative overflow-hidden pt-36 pb-24 text-white lg:pt-44 lg:pb-28">
+      <section className="bg-night-gradient slant-top relative overflow-hidden pt-24 pb-16 sm:pt-36 sm:pb-24 text-white lg:pt-44 lg:pb-28">
         <Particles />
         <div className="container-x relative z-10">
           <SectionHeading
@@ -203,21 +206,29 @@ export default async function SolutionPage({ params }: Props) {
               </>
             }
           />
-          <ol className="relative mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          <ol className="relative mt-10 grid gap-7 sm:mt-16 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:gap-6">
             {/* Ligne qui relie les étapes (grand écran) */}
             <span
               aria-hidden
               className="absolute top-6 right-[12.5%] left-[12.5%] hidden h-0.5 -translate-y-1/2 bg-gradient-to-r from-teal-brand via-violet-light to-teal-brand opacity-50 lg:block"
             />
             {s.steps.map((st, i) => (
-              <li key={st.title} className="reveal relative text-center">
-                <span className="relative mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-teal-brand font-display text-sm font-bold text-night ring-8 ring-night/60">
+              <li
+                key={st.title}
+                className="reveal relative flex items-start gap-4 text-left sm:block sm:text-center"
+              >
+                {/* Mobile : numéro à gauche, texte à droite ; centré dès 640px */}
+                <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal-brand font-display text-sm font-bold text-night ring-8 ring-night/60 sm:mx-auto sm:h-12 sm:w-12">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-6 font-display text-lg font-semibold">{st.title}</h3>
-                <p className="mx-auto mt-2.5 max-w-xs text-sm leading-relaxed text-white/65">
-                  {st.desc}
-                </p>
+                <div>
+                  <h3 className="mt-1.5 font-display text-base font-semibold sm:mt-6 sm:text-lg">
+                    {st.title}
+                  </h3>
+                  <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-white/65 sm:mx-auto sm:mt-2.5">
+                    {st.desc}
+                  </p>
+                </div>
               </li>
             ))}
           </ol>
@@ -236,7 +247,7 @@ export default async function SolutionPage({ params }: Props) {
       />
 
       {/* Appel à l'action + autres solutions */}
-      <section className="pb-24 lg:pb-28">
+      <section className="pb-16 sm:pb-24 lg:pb-28">
         <div className="container-x">
           <div className="bg-night-gradient reveal relative overflow-hidden rounded-3xl px-6 py-14 text-center text-white sm:px-12">
             <span
@@ -270,7 +281,8 @@ export default async function SolutionPage({ params }: Props) {
                 href={`/solutions/${o.slug}`}
                 className="reveal group flex items-center gap-5 rounded-2xl border border-line bg-white p-6 transition-colors duration-300 hover:border-violet-brand/30 hover:bg-violet-pale/60"
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg text-violet-brand ring-1 ring-line">
+                {/* Icône masquée sur mobile pour laisser la place au texte */}
+                <span className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-lg text-violet-brand ring-1 ring-line sm:flex">
                   <Icon name={o.icon} className="h-6 w-6" />
                 </span>
                 <span className="flex-1">

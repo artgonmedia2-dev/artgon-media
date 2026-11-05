@@ -80,7 +80,7 @@ export default function RealisationsPage() {
             <nav aria-label="Fil d'Ariane" className="text-sm text-white/50">
               <ol className="flex gap-2">
                 <li>
-                  <Link href="/" className="transition-colors hover:text-teal-light">
+                  <Link href="/" className="-my-2 inline-block py-2 transition-colors hover:text-teal-light">
                     Accueil
                   </Link>
                 </li>
@@ -154,7 +154,7 @@ export default function RealisationsPage() {
       </section>
 
       {/* Projets en alternance image / texte */}
-      <section id="projets" className="scroll-mt-20 py-24 lg:py-28">
+      <section id="projets" className="scroll-mt-20 py-16 sm:py-24 lg:py-28">
         <div className="container-x space-y-20 lg:space-y-28">
           {caseStudies.map((c, i) => (
             <article
@@ -236,7 +236,7 @@ export default function RealisationsPage() {
                       href={c.url}
                       target="_blank"
                       rel="noopener"
-                      className="group inline-flex items-center gap-1.5 text-sm font-bold text-ink transition-colors hover:text-violet-brand"
+                      className="group -my-2 inline-flex items-center gap-1.5 py-2 text-sm font-bold text-ink transition-colors hover:text-violet-brand"
                     >
                       Voir le site
                       <Icon
@@ -254,7 +254,7 @@ export default function RealisationsPage() {
       </section>
 
       {/* Appel à l'action */}
-      <section className="pb-24 lg:pb-28">
+      <section className="pb-16 sm:pb-24 lg:pb-28">
         <div className="container-x">
           <div className="bg-night-gradient reveal relative overflow-hidden rounded-3xl px-6 py-14 text-center text-white sm:px-12">
             <span

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ProjectDeck from "./ProjectDeck";
 import SectionHeading from "./SectionHeading";
 import { Icon } from "./icons";
 import { projects } from "@/lib/content";
@@ -10,7 +11,7 @@ import { projects } from "@/lib/content";
  */
 export default function Portfolio() {
   return (
-    <section id="realisations" className="scroll-mt-20 py-24 lg:py-28">
+    <section id="realisations" className="scroll-mt-20 py-16 sm:py-24 lg:py-28">
       <div className="container-x">
         <SectionHeading
           eyebrow="Réalisations"
@@ -22,7 +23,16 @@ export default function Portfolio() {
           desc="Des projets concrets qui ont transformé la présence digitale de nos clients à Nador et en Europe."
         />
 
-        <div className="mt-10 grid gap-x-8 gap-y-6 md:grid-cols-2">
+        {/* Mobile : pile de cartes à faire glisser (Kokonut UI) */}
+        <div className="mt-6 sm:hidden">
+          <ProjectDeck />
+          <p className="mt-2 text-center text-xs text-mute">
+            Glissez la carte pour voir le projet suivant
+          </p>
+        </div>
+
+        {/* Dès 640px : cartes classiques */}
+        <div className="mt-10 hidden gap-x-8 gap-y-6 sm:grid md:grid-cols-2">
           {projects.map((p) => (
             <article
               key={p.title}
@@ -73,7 +83,7 @@ export default function Portfolio() {
                     rel="noopener"
                     aria-label={`Voir le site ${p.title}`}
                     title="Voir le site"
-                    className="shrink-0 text-teal-brand transition-transform duration-300 hover:translate-x-1 hover:-translate-y-1"
+                    className="-m-2 shrink-0 p-2 text-teal-brand transition-transform duration-300 hover:translate-x-1 hover:-translate-y-1"
                   >
                     <Icon name="arrow-up-right" className="h-7 w-7" strokeWidth={1.5} />
                   </a>

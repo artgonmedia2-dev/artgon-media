@@ -53,7 +53,7 @@ export default function ContactPage() {
             <nav aria-label="Fil d'Ariane" className="text-sm text-white/50">
               <ol className="flex gap-2">
                 <li>
-                  <Link href="/" className="transition-colors hover:text-teal-light">
+                  <Link href="/" className="-my-2 inline-block py-2 transition-colors hover:text-teal-light">
                     Accueil
                   </Link>
                 </li>
@@ -127,7 +127,7 @@ export default function ContactPage() {
       </section>
 
       {/* Nous trouver */}
-      <section className="py-24 lg:py-28">
+      <section className="py-16 sm:py-24 lg:py-28">
         <div className="container-x grid items-center gap-10 lg:grid-cols-[0.8fr_1.4fr] lg:gap-14">
           <div className="reveal">
             <span className="inline-flex items-center gap-2 text-sm font-semibold text-teal-dark">
