@@ -24,7 +24,7 @@ export default function Services() {
             eyebrow="Nos services"
             title={
               <>
-                Services web & <em className="accent text-violet-brand">digitaux</em> à Nador
+                Services web & digitaux à Nador
               </>
             }
             desc="Artgon MEDIA propose une gamme complète de services digitaux pour propulser votre entreprise en ligne, de la création de site web à l'automatisation par l'IA."
@@ -102,7 +102,7 @@ export default function Services() {
               rel="noopener"
               className="btn-sweep mt-5 inline-block rounded-lg bg-violet-brand px-6 py-3.5 text-sm font-bold text-white hover:text-night"
             >
-              Décrire mon projet sur WhatsApp
+              Devis gratuit sur WhatsApp
             </a>
           </div>
         </div>
@@ -134,23 +134,13 @@ export default function Services() {
                 {cur.title}
               </h3>
 
-              <div className="relative mt-10 grid grid-cols-2 gap-6 border-t border-white/10 pt-8">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-white/50">
-                    À partir de
-                  </p>
-                  <p className="mt-2 font-display text-2xl font-bold text-teal-brand">
-                    {cur.from}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-white/50">
-                    Prix
-                  </p>
-                  <p className="mt-2 font-display text-2xl font-bold text-white">
-                    TVA incluse
-                  </p>
-                </div>
+              <div className="relative mt-10 border-t border-white/10 pt-8">
+                <p className="text-xs font-semibold uppercase tracking-wider text-white/60">
+                  Délai indicatif
+                </p>
+                <p className="mt-2 font-display text-2xl font-bold text-teal-brand">
+                  {cur.delay}
+                </p>
               </div>
 
               <ul className="relative mt-8 flex flex-wrap gap-2">

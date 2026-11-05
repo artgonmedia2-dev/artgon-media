@@ -12,7 +12,7 @@ export default function PricingTeaser({ showAllLink = true }: { showAllLink?: bo
           eyebrow="Nos tarifs"
           title={
             <>
-              Des prix <em className="accent text-violet-brand">transparents</em> à Nador
+              Des prix transparents à Nador
             </>
           }
           desc="Tous les prix sont en dirhams marocains (MAD), TVA incluse. Devis personnalisé gratuit sur demande."
@@ -63,10 +63,10 @@ export default function PricingTeaser({ showAllLink = true }: { showAllLink?: bo
               <ul
                 className={`mt-6 flex-1 space-y-2.5 border-t pt-6 ${p.featured ? "border-white/15" : "border-line"}`}
               >
-                {p.features.map((it) => (
+                {p.features.map((it, k) => (
                   <li
                     key={it}
-                    className={`flex items-start gap-2.5 text-sm ${p.featured ? "text-white/85" : "text-ink-soft"}`}
+                    className={`${k >= 5 ? "hidden lg:flex" : "flex"} items-start gap-2.5 text-sm ${p.featured ? "text-white/85" : "text-ink-soft"}`}
                   >
                     <Icon
                       name="check"
@@ -77,6 +77,27 @@ export default function PricingTeaser({ showAllLink = true }: { showAllLink?: bo
                   </li>
                 ))}
               </ul>
+              {p.features.length > 5 ? (
+                <details className="group mt-3 lg:hidden">
+                  <summary
+                    className={`flex min-h-11 cursor-pointer list-none items-center text-sm font-bold ${p.featured ? "text-teal-light" : "text-violet-brand"}`}
+                  >
+                    <span className="group-open:hidden">Voir tout (+{p.features.length - 5})</span>
+                    <span className="hidden group-open:inline">Réduire</span>
+                  </summary>
+                  <ul className="space-y-2.5">
+                    {p.features.slice(5).map((it) => (
+                      <li
+                        key={it}
+                        className={`flex items-start gap-2.5 text-sm ${p.featured ? "text-white/85" : "text-ink-soft"}`}
+                      >
+                        <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-teal-brand" strokeWidth={2.25} />
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              ) : null}
 
               <a
                 href={planWhatsapp(p)}
@@ -100,7 +121,7 @@ export default function PricingTeaser({ showAllLink = true }: { showAllLink?: bo
             className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full border border-white/10"
           />
           <h3 className="relative mx-auto max-w-2xl font-display text-[clamp(1.4rem,3vw,2rem)] font-bold leading-tight">
-            Besoin d&apos;un devis <em className="accent text-teal-brand">sur mesure</em>{" "}
+            Besoin d&apos;un devis sur mesure{" "}
             pour un projet plus complexe ?
           </h3>
           <div className="relative mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -110,7 +131,7 @@ export default function PricingTeaser({ showAllLink = true }: { showAllLink?: bo
               rel="noopener"
               className="btn-sweep rounded-lg bg-teal-brand px-8 py-4 text-sm font-bold text-night"
             >
-              Contactez-nous sur WhatsApp
+              Devis gratuit sur WhatsApp
             </a>
             {showAllLink ? (
               <Link

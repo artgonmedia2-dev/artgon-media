@@ -172,7 +172,7 @@ export default function TarifsPage() {
             eyebrow="Tous nos forfaits"
             title={
               <>
-                Un forfait pour <em className="accent text-violet-brand">chaque besoin</em>
+                Un forfait pour chaque besoin
               </>
             }
             desc="Prix de départ en dirhams (MAD). Chaque projet reçoit un devis détaillé et gratuit sous 24 h."
@@ -194,7 +194,7 @@ export default function TarifsPage() {
               eyebrow="Sur devis"
               title={
                 <>
-                  Nos <em className="accent text-violet-brand">logiciels</em>
+                  Nos logiciels
                 </>
               }
             />
@@ -249,7 +249,7 @@ export default function TarifsPage() {
         eyebrow="FAQ"
         title={
           <>
-            Questions sur nos <em className="accent text-violet-brand">tarifs</em>
+            Questions sur nos tarifs
           </>
         }
       />

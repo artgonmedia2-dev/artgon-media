@@ -20,7 +20,7 @@ export default function Why() {
               title={
                 <>
                   L&apos;agence digitale de{" "}
-                  <em className="accent text-violet-brand">référence</em> à Nador
+                  référence à Nador
                 </>
               }
               desc="Expertise technique, connaissance du marché local et accompagnement humain : voilà ce qui nous distingue."
@@ -30,7 +30,7 @@ export default function Why() {
                 href="/#contact"
                 className="group inline-flex items-center gap-2.5 rounded-lg bg-violet-brand px-7 py-4 text-sm font-bold text-white shadow-[0_12px_30px_rgba(102,85,160,0.3)] transition-colors duration-300 hover:bg-violet-dark"
               >
-                Parlons de votre projet
+                Devis gratuit
                 <Icon
                   name="arrow"
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"

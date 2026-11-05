@@ -17,7 +17,7 @@ export default function Portfolio() {
           eyebrow="Réalisations"
           title={
             <>
-              Nos derniers <em className="accent text-violet-brand">projets</em>
+              Nos derniers projets
             </>
           }
           desc="Des projets concrets qui ont transformé la présence digitale de nos clients à Nador et en Europe."

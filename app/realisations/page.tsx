@@ -114,7 +114,7 @@ export default function RealisationsPage() {
                 href="/#contact"
                 className="rounded-lg border border-white/30 px-7 py-4 text-center text-sm font-bold text-white transition-all hover:-translate-y-1 hover:border-white hover:bg-white/5"
               >
-                Parlons de votre projet
+                Devis gratuit
               </Link>
             </div>
           </div>
@@ -262,7 +262,7 @@ export default function RealisationsPage() {
               className="absolute -right-24 -bottom-24 h-72 w-72 rounded-full border border-white/10"
             />
             <h2 className="relative font-display text-[clamp(1.6rem,3.4vw,2.4rem)] font-bold">
-              Et votre <em className="accent text-teal-brand">projet</em> ?
+              Et votre projet ?
             </h2>
             <p className="relative mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/70 sm:text-[0.95rem]">
               Décrivez-nous votre projet et nous vous recontactons sous 2h pour
@@ -272,7 +272,7 @@ export default function RealisationsPage() {
               href="/#contact"
               className="btn-sweep relative mt-8 inline-block rounded-lg bg-teal-brand px-8 py-4 text-sm font-bold text-night"
             >
-              Parlons de votre projet
+              Devis gratuit
             </Link>
           </div>
         </div>

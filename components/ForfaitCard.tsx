@@ -52,7 +52,7 @@ export default function ForfaitCard({
           rel="noopener"
           className="flex-1 rounded-lg bg-violet-brand py-3 text-center text-sm font-bold text-white transition-colors hover:bg-violet-light"
         >
-          Demander un devis
+          Devis gratuit
         </a>
         <a
           href="/#services"

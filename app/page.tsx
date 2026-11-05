@@ -27,7 +27,7 @@ export default function Home() {
         title={
           <>
             Questions fréquentes sur{" "}
-            <em className="accent text-violet-brand">Artgon MEDIA</em>
+            <span className="whitespace-nowrap">Artgon MEDIA</span>
           </>
         }
       />

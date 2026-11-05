@@ -48,7 +48,7 @@ export const plans: Plan[] = [
       "Hébergement 1 an offert",
       "Formation à la gestion",
     ],
-    cta: "Démarrer avec Starter",
+    cta: "Choisir Starter",
   },
   {
     name: "Pro",
@@ -64,7 +64,7 @@ export const plans: Plan[] = [
       "3 mois de support inclus",
       "Formation complète",
     ],
-    cta: "Choisir le plan Pro",
+    cta: "Choisir Pro",
     featured: true,
   },
   {
@@ -80,7 +80,7 @@ export const plans: Plan[] = [
       "Intégration réseaux sociaux",
       "6 mois de support inclus",
     ],
-    cta: "Créer ma boutique",
+    cta: "Choisir E-commerce",
   },
 ];
 

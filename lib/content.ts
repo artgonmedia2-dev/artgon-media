@@ -11,6 +11,7 @@ export type Service = {
   desc: string;
   tags: string[];
   from: string;
+  delay: string; // délai indicatif (repris des pages services publiées)
   href: string;
 };
 
@@ -22,6 +23,7 @@ export const services: Service[] = [
     desc: "La création de site web à Nador par Artgon MEDIA couvre la conception de sites vitrines et e-commerce sur mesure, développés en PHP, Laravel et Next.js. Chaque site est rapide, sécurisé, optimisé pour le référencement local et adapté aux entreprises de Nador, Oujda et de toute la région de l'Oriental.",
     tags: ["PHP", "Laravel", "Next.js", "MySQL"],
     from: "1 500 MAD",
+    delay: "2 à 4 semaines (vitrine)",
     href: "/tarifs#creation-site-web",
   },
   {
@@ -31,6 +33,7 @@ export const services: Service[] = [
     desc: "Artgon MEDIA développe des applications mobiles iOS et Android avec Flutter, Dart et Firebase. Une seule base de code génère deux applications natives performantes, ce qui réduit les coûts et le délai de mise sur le marché pour les entreprises du Maroc et de l'Oriental.",
     tags: ["Flutter", "Dart", "Firebase", "REST API"],
     from: "5 000 MAD",
+    delay: "6 à 12 semaines",
     href: "/tarifs#application-mobile",
   },
   {
@@ -40,6 +43,7 @@ export const services: Service[] = [
     desc: "Le référencement SEO à Nador par Artgon MEDIA combine SEO technique, SEO local et stratégie de contenu pour positionner votre entreprise en tête des résultats Google dans l'Oriental. L'objectif : capter un trafic qualifié et générer des contacts depuis Nador, Oujda et tout le Maroc.",
     tags: ["Google Search Console", "GA4", "Schema.org", "Ahrefs / Semrush"],
     from: "1 500 MAD/mois",
+    delay: "Premiers résultats en 4 à 8 semaines",
     href: "/tarifs#referencement-seo",
   },
   {
@@ -49,6 +53,7 @@ export const services: Service[] = [
     desc: "Le marketing digital d'Artgon MEDIA réunit la gestion des réseaux sociaux et les campagnes publicitaires Meta et Google Ads pour les entreprises de Nador et de l'Oriental. La démarche couvre la stratégie, la création de contenu et l'acquisition de leads qualifiés, avec un reporting mensuel transparent.",
     tags: ["Meta Business", "Google Ads", "Meta Ads", "Canva / Suite créative"],
     from: "1 500 MAD/mois",
+    delay: "Devis détaillé sous 24 h",
     href: "/tarifs#marketing-ads",
   },
   {
@@ -58,6 +63,7 @@ export const services: Service[] = [
     desc: "Artgon MEDIA intègre l'intelligence artificielle pour automatiser les processus métier des entreprises : chatbots intelligents, qualification de leads, réponses clients 24/7 et workflows automatisés. L'objectif est de gagner du temps, réduire les coûts et améliorer la réactivité, du Maroc à l'international.",
     tags: ["Claude", "n8n", "API IA", "WhatsApp Business API"],
     from: "3 000 MAD",
+    delay: "Selon le workflow, devis sous 24 h",
     href: "/tarifs#automatisation-ia",
   },
   {
@@ -67,6 +73,7 @@ export const services: Service[] = [
     desc: "Le service de maintenance et support d'Artgon MEDIA assure le bon fonctionnement de votre site web : mises à jour de sécurité, hébergement optimisé, sauvegardes régulières et assistance 7j/7. Vous gardez un site rapide, sécurisé et à jour, avec un interlocuteur dédié.",
     tags: ["SLA", "Hébergement", "SSL", "Sauvegardes"],
     from: "500 MAD/mois",
+    delay: "Sans engagement, urgence sous 4 h",
     href: "/tarifs#maintenance-support",
   },
 ];

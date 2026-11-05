@@ -135,7 +135,7 @@ export default function ContactPage() {
               Adresse
             </span>
             <h2 className="mt-4 font-display text-[clamp(1.75rem,3.6vw,2.75rem)] font-bold leading-[1.15] tracking-tight text-ink">
-              Nous trouver à <em className="accent text-violet-brand">Nador</em>
+              Nous trouver à Nador
             </h2>
             <p className="mt-5 flex items-start gap-2 text-[0.8rem] text-ink-soft">
               <Icon name="pin" className="h-3.5 w-3.5 shrink-0 text-violet-brand" />

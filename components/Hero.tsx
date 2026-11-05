@@ -7,7 +7,7 @@ import { company } from "@/lib/pricing";
 
 const stats = [
   { num: "50+", txt: "Projets livrés" },
-  { num: "98%", txt: "Clients satisfaits" },
+  { num: "2", txt: "Logiciels édités" },
   { num: "5 ans", txt: "D'expérience" },
   { num: "24h", txt: "Support réactif" },
 ];
@@ -60,7 +60,7 @@ export default function Hero() {
             </Link>
           </div>
 
-          <ul className="mt-7 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 text-sm text-white/60">
+          <ul className="mt-7 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 text-sm text-white/75">
             {perks.map((p) => (
               <li key={p} className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-teal-brand" aria-hidden />
@@ -88,7 +88,7 @@ export default function Hero() {
         <dl className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-y-10 border-t border-night-line pt-12 sm:mt-16 lg:grid-cols-4">
           {stats.map((s) => (
             <div key={s.txt} className="flex flex-col-reverse items-center text-center">
-              <dt className="mt-2 text-sm text-white/60">{s.txt}</dt>
+              <dt className="mt-2 text-sm text-white/80">{s.txt}</dt>
               <dd className="font-display text-4xl font-bold text-white sm:text-5xl">
                 <CountUp value={s.num} />
               </dd>
