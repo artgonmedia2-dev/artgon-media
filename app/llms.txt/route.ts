@@ -1,5 +1,6 @@
 import { company, forfaits, plans } from "@/lib/pricing";
 import { solutions } from "@/lib/solutions";
+import { articles } from "@/lib/blog";
 import { caseStudies, services } from "@/lib/content";
 import { SITE_URL, areasServed, faq, geo, pricingFaq } from "@/lib/seo";
 
@@ -63,6 +64,12 @@ export function GET() {
   lines.push(`Page complète : ${SITE_URL}/realisations`);
   for (const p of caseStudies) {
     lines.push(`- ${p.title} (${p.context}) : ${p.desc} Points clés : ${p.points.join(", ")}.`);
+  }
+  lines.push("");
+
+  lines.push("## Blog (guides)");
+  for (const a of articles) {
+    lines.push(`- ${a.title} : ${a.description} Page : ${SITE_URL}/blog/${a.slug}`);
   }
   lines.push("");
 

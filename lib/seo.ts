@@ -1,7 +1,7 @@
 import { company, forfaits, plans } from "./pricing";
 import { solutions } from "./solutions";
 
-export const SITE_URL = "https://artgonmedia.online";
+export const SITE_URL = "https://www.artgonmedia.online";
 
 /** Coordonnées de l'agence (580 Bd Al Massira, Nador). */
 export const geo = {

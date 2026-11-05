@@ -12,6 +12,7 @@ const agence = [
   { href: "/solutions/assistant-whatsapp-cabinet-medical", label: "Assistant RDV WhatsApp" },
   { href: "/realisations", label: "Réalisations" },
   { href: "/tarifs", label: "Tarifs" },
+  { href: "/blog", label: "Blog" },
 ];
 
 const heading = "font-display text-base font-semibold text-white";
