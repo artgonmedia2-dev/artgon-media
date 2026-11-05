@@ -1,30 +1,37 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import PricingExplorer from "@/components/PricingExplorer";
-import Packs from "@/components/Packs";
-import Options from "@/components/Options";
-import Cgv from "@/components/Cgv";
 import Faq from "@/components/Faq";
-import { company } from "@/lib/pricing";
-import { breadcrumbLd, faqLd, priceListLd } from "@/lib/seo";
+import Particles from "@/components/Particles";
+import PricingTeaser from "@/components/PricingTeaser";
+import SectionHeading from "@/components/SectionHeading";
+import { Icon } from "@/components/icons";
+import { HrPreview, WhatsappPreview } from "@/components/SoftwarePreviews";
+import {
+  customQuoteWhatsapp,
+  forfaitWhatsapp,
+  forfaits,
+  plans,
+} from "@/lib/pricing";
+import Link from "next/link";
+import { solutions } from "@/lib/solutions";
+import { breadcrumbLd, faqLd, priceListLd, pricingFaq } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Tarifs 2026 — Prix création site web, SEO, apps & réseaux sociaux",
+  title: "Tarifs — Prix création site web, SEO, apps & marketing à Nador",
   description:
-    "Grille tarifaire 2026 d'Artgon MEDIA à Nador : site vitrine dès 3 500 MAD, e-commerce dès 12 000 MAD, application mobile dès 8 000 MAD, community management dès 1 500 MAD/mois, SEO dès 2 500 MAD. Prix nets en MAD, hors TVA, sans frais cachés.",
+    "Tarifs transparents d'Artgon MEDIA à Nador : site vitrine dès 1 500 MAD, site Pro 4 500 MAD, e-commerce 9 000 MAD, application mobile dès 5 000 MAD, SEO et marketing dès 1 500 MAD/mois. Prix en MAD, TVA incluse.",
   keywords: [
-    "prix création site web Maroc",
-    "tarif site vitrine Nador",
-    "prix référencement SEO Maroc",
-    "tarif community management Maroc",
+    "prix création site web Nador",
+    "tarif site vitrine Maroc",
+    "prix site e-commerce Maroc",
     "prix application mobile Maroc",
-    "combien coûte un site e-commerce au Maroc",
+    "tarif référencement SEO Nador",
+    "tarif marketing digital Maroc",
   ],
   alternates: { canonical: "/tarifs" },
   openGraph: {
-    title: "Grille tarifaire 2026 — Artgon MEDIA, agence digitale à Nador",
+    title: "Tarifs transparents à Nador — Artgon MEDIA",
     description:
-      "9 familles de prestations, prix publics en MAD nets : sites web, apps mobiles, SEO, Ads, IA, maintenance et packs clé en main.",
+      "Sites web dès 1 500 MAD, applications mobiles dès 5 000 MAD, SEO et marketing dès 1 500 MAD/mois. Prix en MAD, TVA incluse.",
     url: "/tarifs",
     type: "article",
   },
@@ -32,14 +39,16 @@ export const metadata: Metadata = {
 
 const breadcrumb = breadcrumbLd([
   { name: "Accueil", url: "/" },
-  { name: "Tarifs 2026", url: "/tarifs" },
+  { name: "Tarifs", url: "/tarifs" },
 ]);
 
-const highlights = [
-  { label: "Site web", value: "dès 3 500 MAD" },
-  { label: "App mobile", value: "dès 8 000 MAD" },
-  { label: "Réseaux sociaux", value: "dès 1 500 MAD/mois" },
-  { label: "SEO", value: "dès 2 500 MAD" },
+const previews = { hr: HrPreview, whatsapp: WhatsappPreview };
+
+/** Position et inclinaison des trois formules flottantes. */
+const planPos = [
+  "top-6 left-0 -rotate-6",
+  "top-1/2 right-0 z-10 -translate-y-1/2 rotate-3",
+  "bottom-4 left-[12%] -rotate-2",
 ];
 
 export default function TarifsPage() {
@@ -48,98 +57,242 @@ export default function TarifsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([breadcrumb, priceListLd, faqLd]),
+          __html: JSON.stringify([breadcrumb, priceListLd, faqLd(pricingFaq)]),
         }}
       />
 
-      {/* En-tête */}
-      <section className="relative overflow-hidden border-b border-line bg-cloud pt-36 pb-16">
-        <div
-          aria-hidden
-          className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-violet-pale blur-3xl animate-float"
-        />
-        <div className="container-x relative z-10">
-          <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-1.5 font-display text-[0.65rem] font-bold uppercase tracking-[0.18em] text-violet-brand">
-            Rapport global des tarifs — Année 2026
-          </span>
-          <h1 className="mt-6 max-w-3xl font-display text-[clamp(2rem,5vw,3.5rem)] font-black leading-[1.05] tracking-tight text-ink">
-            Toute notre grille tarifaire,{" "}
-            <span className="text-violet-brand">publique et nette</span>.
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-mute">
-            9 familles de prestations, du site vitrine à l&apos;intégration IA.
-            Tous les tarifs sont exprimés en dirhams marocains (MAD), nets, hors
-            TVA. Aucun frais caché : ce qui est affiché est ce qui est facturé.
-          </p>
+      {/* En-tête : texte et repères de prix à gauche, formules flottantes à droite */}
+      <section className="bg-night-gradient relative flex min-h-svh flex-col justify-center overflow-hidden pt-28 pb-16 text-white sm:pt-32">
+        <Particles />
+        <div className="container-x relative z-10 grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
+          <div>
+            <nav aria-label="Fil d'Ariane" className="text-sm text-white/50">
+              <ol className="flex gap-2">
+                <li>
+                  <Link href="/" className="transition-colors hover:text-teal-light">
+                    Accueil
+                  </Link>
+                </li>
+                <li aria-hidden>/</li>
+                <li aria-current="page" className="text-white/80">
+                  Tarifs
+                </li>
+              </ol>
+            </nav>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {highlights.map((h) => (
-              <div
-                key={h.label}
-                className="rounded-2xl border border-line bg-white px-5 py-4"
+            <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-teal-light">
+              <span className="h-px w-6 bg-current" aria-hidden />
+              Tarifs
+            </span>
+            <h1 className="mt-4 font-display text-[clamp(2.3rem,5.5vw,4.25rem)] font-bold leading-[1.05] tracking-tight">
+              Tarifs <em className="accent text-teal-brand">transparents</em> à Nador
+            </h1>
+            <p className="mt-6 max-w-lg text-sm leading-relaxed text-white/70 sm:text-[0.95rem]">
+              Des prix clairs, sans surprise : sites web, applications,
+              référencement, réseaux sociaux, automatisation, maintenance et
+              logiciels. Chaque dépassement est soumis à votre accord avant
+              facturation.
+            </p>
+
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
+              <a
+                href="#tous-les-forfaits"
+                className="btn-sweep rounded-lg bg-teal-brand px-7 py-4 text-center text-sm font-bold text-night shadow-[0_16px_40px_rgba(69,196,187,0.35)]"
               >
-                <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-mute">
-                  {h.label}
-                </p>
-                <p className="mt-1.5 font-display text-base font-black text-violet-brand">
-                  {h.value}
-                </p>
-              </div>
-            ))}
+                Voir les forfaits
+              </a>
+              <a
+                href={customQuoteWhatsapp}
+                target="_blank"
+                rel="noopener"
+                className="rounded-lg border border-white/30 px-7 py-4 text-center text-sm font-bold text-white transition-all hover:-translate-y-1 hover:border-white hover:bg-white/5"
+              >
+                Devis sur WhatsApp
+              </a>
+            </div>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="/#contact"
-              className="rounded-full bg-violet-brand px-7 py-3.5 text-sm font-bold tracking-wide text-white shadow-[0_16px_40px_rgba(102,85,160,0.28)] transition-all hover:-translate-y-1 hover:bg-violet-light"
-            >
-              Obtenir un devis personnalisé
-            </Link>
-            <a
-              href={`https://wa.me/${company.phoneRaw}`}
-              target="_blank"
-              rel="noopener"
-              className="rounded-full border-2 border-teal-brand/50 px-7 py-3.5 text-sm font-bold tracking-wide text-teal-dark transition-all hover:-translate-y-1 hover:bg-teal-pale"
-            >
-              WhatsApp {company.phone}
-            </a>
+          {/* Formules flottantes */}
+          <div aria-hidden className="relative mx-auto hidden h-[30rem] w-full max-w-lg sm:block">
+            <span className="absolute top-1/2 left-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal-brand/20 blur-3xl" />
+            {plans.map((p, i) => (
+              <div key={p.name} className={`absolute ${planPos[i]}`}>
+                <div
+                  className={`w-60 rounded-2xl p-6 shadow-[0_30px_70px_rgba(0,0,0,0.45)] animate-float ${
+                    p.featured
+                      ? "bg-white text-ink ring-2 ring-teal-brand"
+                      : "border border-white/15 bg-night-soft/90 text-white backdrop-blur"
+                  }`}
+                  style={{ animationDelay: `${i * -3}s`, animationDuration: `${9 + i * 2}s` }}
+                >
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`text-xs font-semibold uppercase tracking-[0.14em] ${p.featured ? "text-violet-brand" : "text-teal-light"}`}
+                    >
+                      {p.name}
+                    </span>
+                    {p.featured ? (
+                      <span className="rounded-full bg-teal-brand px-2 py-0.5 text-[0.6rem] font-bold uppercase text-night">
+                        Populaire
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="mt-3 font-display text-3xl font-bold">
+                    {p.price}{" "}
+                    <span className={`text-xs font-semibold ${p.featured ? "text-mute" : "text-white/60"}`}>
+                      MAD
+                    </span>
+                  </p>
+                  <ul className="mt-4 space-y-2">
+                    {p.features.slice(0, 3).map((f) => (
+                      <li
+                        key={f}
+                        className={`flex items-center gap-2 text-xs ${p.featured ? "text-ink-soft" : "text-white/75"}`}
+                      >
+                        <Icon name="check" className="h-3.5 w-3.5 shrink-0 text-teal-brand" strokeWidth={2.5} />
+                        <span className="truncate">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Sections 1 à 7 */}
-      <div className="container-x py-4">
-        <PricingExplorer />
+      <PricingTeaser showAllLink={false} />
 
-        <div className="mt-24 space-y-24 pb-24">
-          <Packs />
-          <Options />
-          <Faq />
-          <Cgv />
+      {/* Tous les forfaits */}
+      <section id="tous-les-forfaits" className="scroll-mt-20 py-24 lg:py-28">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="Tous nos forfaits"
+            title={
+              <>
+                Un forfait pour <em className="accent text-violet-brand">chaque besoin</em>
+              </>
+            }
+            desc="Prix de départ en dirhams (MAD). Chaque projet reçoit un devis détaillé et gratuit sous 24 h."
+          />
 
-          {/* Rappel légal */}
-          <div className="rounded-3xl bg-ink p-10 text-center text-white">
-            <h2 className="font-display text-xl font-black">
-              Une question sur un tarif ?
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/60">
-              Chaque projet est différent. Nous ajustons le périmètre et le
-              devis à votre réalité — parlons-en, la consultation est gratuite.
-            </p>
-            <Link
-              href="/#contact"
-              className="mt-7 inline-block rounded-full bg-teal-brand px-8 py-4 text-sm font-bold tracking-wide text-ink transition-all hover:-translate-y-1 hover:bg-teal-light"
-            >
-              Demander un devis gratuit
-            </Link>
-            <p className="mt-8 text-xs text-white/35">
-              {company.name} • {company.address}
-              <br />
-              RC : {company.rc} • ICE : {company.ice} • {company.site}
-            </p>
+          <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {forfaits.map((f) => (
+              <article
+                key={f.id}
+                id={f.id}
+                className="reveal flex scroll-mt-28 flex-col rounded-2xl border border-line bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_rgba(102,85,160,0.12)]"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-pale text-violet-brand">
+                  <Icon name={f.icon} className="h-6 w-6" />
+                </span>
+                <h3 className="mt-5 font-display text-lg font-semibold text-ink">
+                  {f.title}
+                </h3>
+                <p className="mt-2 text-sm text-mute">À partir de</p>
+                <p className="font-display text-2xl font-bold text-violet-brand">
+                  {f.from}
+                </p>
+                <p className="mt-3 flex items-start gap-2 text-sm text-mute">
+                  <Icon name="clock" className="mt-0.5 h-4 w-4 shrink-0 text-teal-dark" />
+                  {f.delay}
+                </p>
+                <ul className="mt-5 flex-1 space-y-2 border-t border-line pt-5">
+                  {f.points.map((pt) => (
+                    <li key={pt} className="flex items-center gap-2.5 text-sm text-ink-soft">
+                      <Icon
+                        name="check"
+                        className="h-4 w-4 shrink-0 text-teal-brand"
+                        strokeWidth={2.25}
+                      />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-7 flex items-center gap-4">
+                  <a
+                    href={forfaitWhatsapp(f)}
+                    target="_blank"
+                    rel="noopener"
+                    className="flex-1 rounded-lg bg-violet-brand py-3 text-center text-sm font-bold text-white transition-colors hover:bg-violet-light"
+                  >
+                    Demander un devis
+                  </a>
+                  <a
+                    href="/#services"
+                    className="text-sm font-bold text-violet-brand hover:text-teal-dark"
+                  >
+                    Détails
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-24">
+            <SectionHeading
+              eyebrow="Sur devis"
+              title={
+                <>
+                  Nos <em className="accent text-violet-brand">logiciels</em>
+                </>
+              }
+            />
+          </div>
+          <div className="mx-auto mt-12 grid max-w-5xl gap-8">
+            {solutions.map((s, i) => {
+              const Preview = previews[s.preview];
+              return (
+                <article
+                  key={s.name}
+                  className="reveal group grid overflow-hidden rounded-3xl border border-line bg-white shadow-[0_24px_60px_rgba(102,85,160,0.1)] md:grid-cols-[1fr_1.1fr]"
+                >
+                  {/* Aperçu de l'interface, en alternance gauche / droite */}
+                  <div
+                    aria-hidden
+                    className={`relative h-64 overflow-hidden bg-gradient-to-br from-violet-dark to-night md:h-auto md:min-h-72 ${i % 2 ? "md:order-2" : ""}`}
+                  >
+                    <span className="absolute -top-16 -right-16 h-48 w-48 rounded-full bg-teal-brand/25 blur-3xl" />
+                    <div className="relative mx-auto h-full max-w-md transition-transform duration-500 group-hover:scale-[1.03]">
+                      <Preview />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col justify-center p-7 sm:p-10">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <h3 className="font-display text-2xl font-bold text-ink">{s.name}</h3>
+                      <span className="rounded-full bg-violet-pale px-3 py-1 text-xs font-semibold text-violet-brand">
+                        Sur devis
+                      </span>
+                    </div>
+                    <p className="mt-4 leading-relaxed text-mute">{s.tagline}</p>
+                    <p className="mt-5 flex items-center gap-2 text-sm font-medium text-teal-dark">
+                      <Icon name="check" className="h-4 w-4 shrink-0" strokeWidth={2.5} />
+                      {s.offer}
+                    </p>
+                    <Link
+                      href={`/solutions/${s.slug}`}
+                      className="btn-sweep mt-7 w-fit rounded-lg bg-violet-brand px-6 py-3.5 text-sm font-bold text-white hover:text-night"
+                    >
+                      Découvrir {s.name}
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
-      </div>
+      </section>
+
+      <Faq
+        items={pricingFaq}
+        eyebrow="FAQ"
+        title={
+          <>
+            Questions sur nos <em className="accent text-violet-brand">tarifs</em>
+          </>
+        }
+      />
     </>
   );
 }

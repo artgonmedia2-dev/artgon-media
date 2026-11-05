@@ -1,41 +1,87 @@
-import { faq } from "@/lib/seo";
+"use client";
+
+import { useState, type ReactNode } from "react";
+import SectionHeading from "./SectionHeading";
 import { Icon } from "./icons";
+import type { Faq as FaqItems } from "@/lib/seo";
 
 /**
- * FAQ visible + balisage FAQPage : le format le plus repris
- * par Google (extraits enrichis) et par les moteurs génératifs.
+ * FAQ en accordéon animé (hauteur + opacité). Les réponses restent dans le
+ * DOM même fermées : lisibles par les moteurs, le balisage FAQPage étant
+ * injecté par la page.
  */
-export default function Faq() {
-  return (
-    <section id="faq" className="scroll-mt-40">
-      <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-teal-dark">
-        Questions fréquentes
-      </span>
-      <h2 className="mt-2 font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-black leading-tight text-ink">
-        Tout ce qu&apos;il faut savoir avant de commander
-      </h2>
-      <p className="mt-2 max-w-2xl text-sm font-semibold text-mute">
-        Prix, délais, paiement, garantie : les réponses issues de notre grille
-        tarifaire et de nos conditions générales 2026.
-      </p>
+export default function Faq({
+  items,
+  eyebrow,
+  title,
+  id = "faq",
+  className = "",
+}: {
+  items: FaqItems;
+  eyebrow: string;
+  title: ReactNode;
+  id?: string;
+  className?: string;
+}) {
+  const [open, setOpen] = useState<number | null>(0);
 
-      <div className="mt-10 grid gap-3 lg:grid-cols-2">
-        {faq.map((f) => (
-          <details
-            key={f.q}
-            className="reveal group rounded-2xl border border-line bg-white p-6 transition-colors open:border-violet-brand/30 open:bg-violet-pale/30"
-          >
-            <summary className="flex cursor-pointer list-none items-start justify-between gap-4">
-              <h3 className="font-display text-sm font-bold leading-snug text-ink">
-                {f.q}
-              </h3>
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-violet-pale text-violet-brand transition-transform group-open:rotate-90">
-                <Icon name="arrow" className="h-3.5 w-3.5" strokeWidth={2.25} />
-              </span>
-            </summary>
-            <p className="mt-4 text-sm leading-relaxed text-mute">{f.a}</p>
-          </details>
-        ))}
+  return (
+    <section id={id} className={`scroll-mt-20 py-24 lg:py-28 ${className}`}>
+      <div className="container-x">
+        <SectionHeading eyebrow={eyebrow} title={title} />
+
+        <div className="mx-auto mt-14 max-w-3xl divide-y divide-line border-y border-line">
+          {items.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={f.q} className="reveal py-2">
+                <h3>
+                  <button
+                    type="button"
+                    id={`${id}-q-${i}`}
+                    aria-expanded={isOpen}
+                    aria-controls={`${id}-a-${i}`}
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="group flex w-full items-center justify-between gap-6 py-4 text-left"
+                  >
+                    <span
+                      className={`font-display text-base font-semibold transition-colors duration-300 sm:text-lg ${
+                        isOpen ? "text-violet-brand" : "text-ink group-hover:text-violet-brand"
+                      }`}
+                    >
+                      {f.q}
+                    </span>
+                    <span
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-500 ease-out ${
+                        isOpen ? "rotate-90 bg-violet-brand text-white" : "bg-violet-pale text-violet-brand"
+                      }`}
+                    >
+                      <Icon name="arrow" className="h-4 w-4" strokeWidth={2.25} />
+                    </span>
+                  </button>
+                </h3>
+                <div
+                  id={`${id}-a-${i}`}
+                  role="region"
+                  aria-labelledby={`${id}-q-${i}`}
+                  className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p
+                      className={`pb-5 leading-relaxed text-mute transition-transform duration-500 ease-out ${
+                        isOpen ? "translate-y-0" : "-translate-y-2"
+                      }`}
+                    >
+                      {f.a}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
