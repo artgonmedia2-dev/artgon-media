@@ -95,7 +95,7 @@ export default function Nav() {
           aria-label="Artgon MEDIA — retour à l'accueil"
           className="shrink-0 transition-opacity hover:opacity-80"
         >
-          <Logo className="h-11 w-auto sm:h-12" priority />
+          <Logo variant="light" className="h-11 w-auto sm:h-12" priority />
         </Link>
 
         <ul className="hidden items-center gap-9 lg:flex">

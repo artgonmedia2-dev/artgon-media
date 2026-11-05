@@ -1128,7 +1128,7 @@ function useMomentumRail(
 
 // `aria-disabled` rather than `disabled` at the ends, so focus stays put.
 const ARROW_CLASS =
-  "grid size-8 cursor-pointer place-items-center rounded-full border border-zinc-200 bg-white text-zinc-900 transition-[background-color,opacity] duration-150 ease-out hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-zinc-900 focus-visible:outline-offset-2 aria-disabled:cursor-default aria-disabled:opacity-40 aria-disabled:hover:bg-white dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:aria-disabled:hover:bg-zinc-950 dark:focus-visible:outline-zinc-100 dark:hover:bg-zinc-900";
+  "grid size-11 cursor-pointer place-items-center rounded-full border border-zinc-200 bg-white text-zinc-900 transition-[background-color,opacity] duration-150 ease-out hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-zinc-900 focus-visible:outline-offset-2 aria-disabled:cursor-default aria-disabled:opacity-40 aria-disabled:hover:bg-white dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:aria-disabled:hover:bg-zinc-950 dark:focus-visible:outline-zinc-100 dark:hover:bg-zinc-900";
 
 export default function CarouselCards({
   items = DEFAULT_ITEMS,

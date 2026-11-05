@@ -542,7 +542,7 @@ export default function Contact() {
                   {i.href ? (
                     <a
                       href={i.href}
-                      className="text-sm font-semibold text-white transition-colors hover:text-teal-light"
+                      className="inline-flex min-h-11 items-center text-sm font-semibold text-white transition-colors hover:text-teal-light"
                     >
                       {i.value}
                     </a>

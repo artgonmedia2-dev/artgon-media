@@ -16,9 +16,9 @@ const agence = [
 
 const heading = "font-display text-base font-semibold text-white";
 const list = "mt-4 space-y-2.5 text-[0.8rem] text-white/60 sm:mt-5 sm:space-y-3 sm:text-sm";
-const link = "transition-colors hover:text-teal-light";
+const link = "inline-flex min-h-11 items-center transition-colors hover:text-teal-light lg:min-h-0";
 const social =
-  "flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-white/80 transition-colors";
+  "flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white/80 transition-colors";
 
 export default function Footer() {
   return (
@@ -32,7 +32,7 @@ export default function Footer() {
             aria-label="Artgon MEDIA — retour à l'accueil"
             className="inline-block transition-opacity hover:opacity-80"
           >
-            <Logo className="h-14 w-auto" />
+            <Logo variant="light" className="h-14 w-auto" />
           </Link>
           <p className="mt-6 max-w-[17rem] text-sm leading-relaxed text-white/60">
             Agence web & digitale à Nador, Maroc. Création de sites web,

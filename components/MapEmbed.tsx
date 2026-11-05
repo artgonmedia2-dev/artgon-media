@@ -130,7 +130,7 @@ export default function MapEmbed({
             rel="noopener"
             aria-label="Itinéraire vers l'agence"
             title="Itinéraire"
-            className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-pale text-violet-brand transition-colors hover:bg-teal-brand hover:text-night"
+            className="flex h-11 w-11 items-center justify-center rounded-lg bg-violet-pale text-violet-brand transition-colors hover:bg-teal-brand hover:text-night"
           >
             <Icon name="pin" className="h-4 w-4" strokeWidth={2} />
           </a>

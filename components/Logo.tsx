@@ -1,24 +1,26 @@
 import Image from "next/image";
 import logo from "@/public/logo-artgon.png";
+import logoLight from "@/public/logo-artgon-light.png";
 
 /**
  * Logo officiel Artgon MEDIA (PNG à fond transparent, 1024×554).
  * - `variant="bare"`  : posé directement sur fond clair (navigation).
- * - `variant="plate"` : posé sur une plaque blanche — indispensable sur fond
- *   sombre, le violet du logo n'ayant pas assez de contraste sur l'encre.
+ * - `variant="plate"` : posé sur une plaque blanche.
+ * - `variant="light"` : version claire (violet → blanc, turquoise conservé) pour
+ *   les fonds sombres (navigation sur le hero, pied de page).
  */
 export default function Logo({
   variant = "bare",
   className = "h-11 w-auto",
   priority = false,
 }: {
-  variant?: "bare" | "plate";
+  variant?: "bare" | "plate" | "light";
   className?: string;
   priority?: boolean;
 }) {
   const image = (
     <Image
-      src={logo}
+      src={variant === "light" ? logoLight : logo}
       alt="Artgon MEDIA — agence digitale et web à Nador"
       className={className}
       priority={priority}

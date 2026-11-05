@@ -70,12 +70,12 @@ export default function Services() {
                     <div className="overflow-hidden">
                       <div className="pb-6 pl-14">
                         <p className="leading-relaxed text-mute">{s.desc}</p>
-                        <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-teal-dark">
+                        <p className="mt-3 text-[13px] font-semibold uppercase tracking-wider text-teal-dark">
                           {s.tags.join(" · ")}
                         </p>
                         <Link
                           href={s.href}
-                          className="mt-2 -mb-2 inline-flex items-center gap-2 py-2 text-sm font-bold text-violet-brand hover:text-teal-dark"
+                          className="mt-1 -mb-3 inline-flex min-h-11 items-center gap-2 py-3 text-sm font-bold text-violet-brand hover:text-teal-dark"
                         >
                           À partir de {s.from}
                           <Icon name="arrow" className="h-4 w-4" />

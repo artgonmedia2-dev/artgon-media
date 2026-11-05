@@ -929,7 +929,7 @@ function DeckDetails({
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
 const LAYOUT_SPRING = { type: "spring", duration: 0.45, bounce: 0 } as const;
 const NAV_BUTTON =
-  "flex size-8 shrink-0 items-center justify-center rounded-full border border-zinc-200 text-zinc-600 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 active:translate-y-px dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100";
+  "flex size-11 shrink-0 items-center justify-center rounded-full border border-zinc-200 text-zinc-600 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 active:translate-y-px dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100";
 
 // ---------------------------------------------------------------------------
 // Demo artwork: flat zinc compositions with one accent, drawn inline so the

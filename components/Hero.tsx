@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import heroShot from "@/public/hero-realisations.webp";
 import CountUp from "./CountUp";
 import Particles from "./Particles";
 import { company } from "@/lib/pricing";
@@ -18,11 +20,12 @@ const whatsapp = `https://wa.me/${company.phoneRaw}?text=${encodeURIComponent(
 
 export default function Hero() {
   return (
-    <section className="bg-night-gradient relative flex min-h-svh flex-col justify-center overflow-hidden pt-28 pb-16 sm:pt-32">
+    <section className="bg-night-gradient relative flex min-h-svh flex-col justify-center overflow-hidden pt-28 pb-28 sm:pt-32 sm:pb-16">
       <Particles />
 
       <div className="container-x relative z-10">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+        <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
           <p className="text-sm font-semibold text-teal-light sm:text-base">
             Agence web & digitale — Nador, Oriental, Maroc
           </p>
@@ -33,14 +36,14 @@ export default function Hero() {
             <br />à Nador
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-base lg:mx-0 leading-relaxed text-white/75 sm:text-lg">
             <strong className="font-semibold text-white">Artgon MEDIA</strong>{" "}
             crée des sites web performants, des applications mobiles Flutter et
             des stratégies digitales pour les entreprises de Nador, du Maroc et
             de la diaspora en Europe.
           </p>
 
-          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-start">
             <a
               href={whatsapp}
               target="_blank"
@@ -57,7 +60,7 @@ export default function Hero() {
             </Link>
           </div>
 
-          <ul className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/60">
+          <ul className="mt-7 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 text-sm text-white/60">
             {perks.map((p) => (
               <li key={p} className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-teal-brand" aria-hidden />
@@ -65,6 +68,21 @@ export default function Hero() {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Preuve visuelle : captures de projets réels livrés par l'agence */}
+        <figure className="relative mx-auto w-full max-w-xl lg:max-w-none">
+          <Image
+            src={heroShot}
+            alt="Réalisations d'Artgon MEDIA : le site nadorwestwood.com et l'application mobile Fit Journey"
+            priority
+            sizes="(min-width: 1024px) 46vw, (min-width: 640px) 576px, 92vw"
+            className="h-auto w-full drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+          />
+          <figcaption className="mt-3 text-center text-xs text-white/70 lg:text-right">
+            Projets réels : Nador West Wood (site web) · Fit Journey (application mobile)
+          </figcaption>
+        </figure>
         </div>
 
         <dl className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-y-10 border-t border-night-line pt-12 sm:mt-16 lg:grid-cols-4">
