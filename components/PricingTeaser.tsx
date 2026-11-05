@@ -18,11 +18,12 @@ export default function PricingTeaser({ showAllLink = true }: { showAllLink?: bo
           desc="Tous les prix sont en dirhams marocains (MAD), TVA incluse. Devis personnalisé gratuit sur demande."
         />
 
-        <div className="mx-auto mt-10 grid max-w-6xl items-start gap-6 sm:mt-16 lg:grid-cols-3">
+        <p className="mt-6 text-center text-xs text-mute lg:hidden">Glissez pour voir les autres forfaits →</p>
+        <div className="-mx-4 mt-4 flex snap-x snap-mandatory items-start gap-4 overflow-x-auto px-4 pt-4 pb-4 sm:mt-16 lg:mx-auto lg:grid lg:max-w-6xl lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0 lg:pt-0">
           {plans.map((p) => (
             <article
               key={p.name}
-              className={`reveal relative flex flex-col rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 ${
+              className={`relative flex w-[85%] shrink-0 snap-center flex-col rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 sm:w-[60%] lg:w-auto ${p.featured ? "order-first lg:order-none" : ""} ${
                 p.featured
                   ? "bg-night-gradient text-white shadow-[0_30px_70px_rgba(13,12,34,0.35)] lg:-mt-4"
                   : "border border-line bg-white hover:shadow-[0_24px_60px_rgba(102,85,160,0.12)]"

@@ -30,16 +30,17 @@ export default function Solutions() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:mt-14 sm:gap-8 lg:grid-cols-2">
+        <p className="mt-8 text-center text-xs text-white/60 lg:hidden">Glissez pour voir l&apos;autre logiciel →</p>
+        <div className="-mx-4 mt-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:mt-14 lg:mx-0 lg:grid lg:grid-cols-2 lg:gap-8 lg:overflow-visible lg:px-0">
           {solutions.map((s) => {
             const Preview = previews[s.preview];
             return (
               <article
                 key={s.name}
-                className="reveal group overflow-hidden rounded-3xl bg-white/[0.04] ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1.5 hover:ring-teal-brand/40"
+                className="group w-[88%] shrink-0 snap-center overflow-hidden rounded-3xl bg-white/[0.04] sm:w-[70%] lg:w-auto ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1.5 hover:ring-teal-brand/40"
               >
                 {/* Aperçu de l'interface */}
-                <div className="relative h-72 overflow-hidden bg-gradient-to-br from-violet-dark/60 to-night">
+                <div className="relative h-56 overflow-hidden bg-gradient-to-br sm:h-72 from-violet-dark/60 to-night">
                   <span
                     aria-hidden
                     className="absolute -top-20 -right-20 h-56 w-56 rounded-full bg-teal-brand/20 blur-3xl transition-opacity group-hover:opacity-80"

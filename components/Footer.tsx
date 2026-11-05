@@ -15,7 +15,7 @@ const agence = [
 ];
 
 const heading = "font-display text-base font-semibold text-white";
-const list = "mt-4 space-y-2.5 text-[0.8rem] text-white/60 sm:mt-5 sm:space-y-3 sm:text-sm";
+const list = "mt-2 text-[0.8rem] text-white/60 sm:mt-5 sm:space-y-3 sm:text-sm";
 const link = "inline-flex min-h-11 items-center transition-colors hover:text-teal-light lg:min-h-0";
 const social =
   "flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-white/80 transition-colors";
@@ -103,7 +103,7 @@ export default function Footer() {
 
         <div>
           <h3 className={heading}>Zones desservies</h3>
-          <ul className={list}>
+          <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[0.8rem] text-white/60 sm:mt-5 sm:block sm:space-y-3 sm:text-sm">
             {areasServed.map((z) => (
               <li key={z}>{z}</li>
             ))}
