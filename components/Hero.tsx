@@ -4,15 +4,18 @@ import heroShot from "@/public/hero-realisations.webp";
 import CountUp from "./CountUp";
 import Particles from "./Particles";
 import { company } from "@/lib/pricing";
+import { caseStudies } from "@/lib/content";
+import { solutions } from "@/lib/solutions";
 
+// Uniquement des chiffres vérifiables sur le site (calculés depuis les contenus publiés).
 const stats = [
-  { num: "50+", txt: "Projets livrés" },
-  { num: "2", txt: "Logiciels édités" },
-  { num: "5 ans", txt: "D'expérience" },
-  { num: "24h", txt: "Support réactif" },
+  { num: String(caseStudies.length), txt: "Réalisations publiées" },
+  { num: String(solutions.length), txt: "Logiciels édités" },
+  { num: "5", txt: "Pays desservis" },
+  { num: "2h", txt: "Délai de réponse" },
 ];
 
-const perks = ["Sites dès 1 500 MAD", "Réponse sous 2h", "Maroc & Europe"];
+const perks = ["Sites dès 1 500 MAD", "Devis gratuit", "Nador · Maroc & Europe"];
 
 const whatsapp = `https://wa.me/${company.phoneRaw}?text=${encodeURIComponent(
   "Bonjour, je souhaite un devis gratuit pour mon projet digital.",
